@@ -74,7 +74,7 @@ app.get('/find',async function(req,res){
 
     for(let x = 0; x < filterdonor.length; x++){
 
-        const {name, village,district, bloodgroup, contact, whatsapp}=filterdonor[x]
+        const {name, village,district, bloodgroup, contact, Whatsapp}=filterdonor[x]
        card += ` <div class="main">
             <div class="user-detail">
 
@@ -85,7 +85,7 @@ app.get('/find',async function(req,res){
         </div>
         <div class="call">
        <a href="tel:+91${contact}">   <img style="width: 40px;"src="https://cdn-icons-png.flaticon.com/128/5585/5585856.png"/></a>
-       <a href="https://wa.me/+91${whatsapp}">     <img style="width:40px;"src="https://cdn-icons-png.flaticon.com/128/3670/3670051.png"/></a>
+       <a href="https://wa.me/+91${Whatsapp}">     <img style="width:40px;"src="https://cdn-icons-png.flaticon.com/128/3670/3670051.png"/></a>
         </div>
         </div>
      ` 
@@ -118,7 +118,7 @@ app.get('/register',function(req,res){
 
 app.get('/registerdonor',async function(req,res){
     
-    const {district, village, bloodgroupregister, name, contact, Whatsappno } = req.query
+    const {district, village, bloodgroupregister, name, contact, whatsappno } = req.query
     const isdonor = await donor.find({'contact': contact})
     
     if(isdonor.length > 0){
@@ -132,7 +132,7 @@ app.get('/registerdonor',async function(req,res){
     "district":district,
     bloodgroup:bloodgroupregister,
     'contact':contact,
-    Whatsapp: Whatsappno,
+    Whatsapp: whatsappno,
     "village": village
    })
 
