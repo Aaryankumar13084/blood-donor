@@ -102,7 +102,7 @@ ${header}
       
       
       <div class="back" style="display: flex; justify-content: flex-end; ">
-        <a href="FindDonor.html" style="text-align: center; padding:2px 10px; margin-top: 5px;  background: red;
+        <a href="/" style="text-align: center; padding:2px 10px; margin-top: 5px;  background: red;
     border: 2px solid darkred; border-radius: 3px;" >back</a>
         
       </div>
@@ -162,7 +162,7 @@ app.get('/registerdonor',async function(req,res){
 <h2>Phone No: ${contact} </h2>
 <h2>Whatsapp No: ${whatsappno} </h2>
   <div id="link">
-    <a class="p" href="index.html" style="background: red;">Back</a>
+    <a class="p" href="/" style="background: red;">Back</a>
   </div>
       </div>
          
