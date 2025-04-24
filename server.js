@@ -118,7 +118,7 @@ app.get('/register',function(req,res){
 
 app.get('/registerdonor',async function(req,res){
     
-    const {district, village, bloodgroupregister, name, contact, whatsappno } = req.query
+    const {district, village, bloodgroupregister, name, contact, Whatsappno } = req.query
     const isdonor = await donor.find({'contact': contact})
     
     if(isdonor.length > 0){
@@ -132,7 +132,7 @@ app.get('/registerdonor',async function(req,res){
     "district":district,
     bloodgroup:bloodgroupregister,
     'contact':contact,
-    Whatsapp: whatsappno,
+    Whatsapp: Whatsappno,
     "village": village
    })
 
