@@ -28,6 +28,11 @@ const header = `
 </head>
 
 <body>
+<style>
+h2{
+color; white;
+}
+</style>
         <div class="main-header">
         <a href="/">Home</a>
         <a href="/findDonor">Blood Donor</a>
@@ -66,7 +71,7 @@ app.get('/find',async function(req,res){
     })
 
     if(filterdonor.length === 0){
-        
+
         return res.send(`${header}<div style="height: 400px; display: flex; justify-content: center; align-items: center;"><p style="color: red; font-size: 30px;">Donor Not Found</p><div>${footer}`)
       }
 
@@ -74,18 +79,18 @@ app.get('/find',async function(req,res){
 
     for(let x = 0; x < filterdonor.length; x++){
 
-        const {name, village,district, bloodgroup, contact, Whatsapp}=filterdonor[x]
+        const {name, village,tehsil, bloodgroup, contact, Whatsapp}=filterdonor[x]
        card += ` <div class="main">
             <div class="user-detail">
 
      <h2> Name: ${name} </h2>
-     <h2> District: ${district} </h2>
+     <h2> District: ${tehsil} </h2>
      <h2> Village: ${village} </h2>
        <h2>Blood group: ${bloodgroup}</h2>
         </div>
         <div class="call">
-       <a href="tel:+91${contact}">   <img style="width: 40px;"src="https://cdn-icons-png.flaticon.com/128/5585/5585856.png"/></a>
-       <a href="https://wa.me/+91${Whatsapp}">     <img style="width:40px;"src="https://cdn-icons-png.flaticon.com/128/3670/3670051.png"/></a>
+       <a href="tel:+91${contact}">   <img style="width: 50px;"src="https://cdn-icons-png.flaticon.com/128/5585/5585856.png"/></a>
+       <a href="https://wa.me/+91${Whatsapp}">     <img style="width:50px;"src="https://cdn-icons-png.flaticon.com/128/3670/3670051.png"/></a>
         </div>
         </div>
      ` 
@@ -93,6 +98,7 @@ app.get('/find',async function(req,res){
 
     res.send(`
 ${header}
+
         <div id="form2">
     <div class="card" id="find"">
       
@@ -117,19 +123,19 @@ app.get('/register',function(req,res){
 })
 
 app.get('/registerdonor',async function(req,res){
-    
-    const {district, village, bloodgroupregister, name, contact, whatsappno } = req.query
+
+    const {tehsil, village, bloodgroupregister, name, contact, whatsappno } = req.query
     const isdonor = await donor.find({'contact': contact})
-    
+
     if(isdonor.length > 0){
-     
+
      return res.send (`<script> alert("you are alrady register")
   window.location.href = "/register"; // Redirect back to form page
         </script>`)    }
-    
+
    const newdonor = await donor({
     "name":name,
-    "district":district,
+    "tehsil":tehsil,
     bloodgroup:bloodgroupregister,
     'contact':contact,
     Whatsapp: whatsappno,
@@ -155,7 +161,7 @@ app.get('/registerdonor',async function(req,res){
   />
   <p>PROFILE</p>
   <h2>Name: ${name} </h2>
-        <h2>District: ${district} </h2>
+        <h2>District: ${tehsil} </h2>
         <h2>Village: ${village}</h2>
 <h2> Blood-group: ${bloodgroupregister}
 </h2>
