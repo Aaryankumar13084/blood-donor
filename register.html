@@ -24,79 +24,21 @@
 
 <form action="/registerdonor" type="get">
                     <div class="input2">
-                        <label for="district2">Select a District:</label><br>
-                        <select id="district2" name="district" required>
-        <option value="">--Select District--</option>
-        <option value="agra">Agra</option>
-        <option value="aligarh">Aligarh</option>
-        <option value="allahabad">Allahabad</option>
-        <option value="ambedkarnagar">Ambedkarnagar</option>
-        <option value="amu">Amroha</option>
-        <option value="auraiya">Auraiya</option>
-        <option value="ayodhya">Ayodhya</option>
-        <option value="badayun">Badaun</option>
-        <option value="bahraich">Bahraich</option>
-        <option value="banda">Banda</option>
-        <option value="barabanki">Barabanki</option>
-        <option value="bareilly">Bareilly</option>
-        <option value="bijnor">Bijnor</option>
-        <option value="bulandshahr">Bulandshahr</option>
-        <option value="chandauli">Chandauli</option>
-        <option value="chitrakoot">Chitrakoot</option>
-        <option value="deoria">Deoria</option>
-        <option value="etah">Etah</option>
-        <option value="etawah">Etawah</option>
-        <option value="faizabad">Faizabad</option>
-        <option value="farrukhabad">Farrukhabad</option>
-        <option value="fatehpur">Fatehpur</option>
-        <option value="firozabad">Firozabad</option>
-        <option value="gauriganj">Gauriganj</option>
-        <option value="ghaziabad">Ghaziabad</option>
-        <option value="ghazipur">Ghazipur</option>
-        <option value="gonda">Gonda</option>
-        <option value="gorakhpur">Gorakhpur</option>
-        <option value="hamirpur">Hamirpur</option>
-        <option value="hardoi">Hardoi</option>
-        <option value="hapur">Hapur</option>
-        <option value="jalaun">Jalaun</option>
-        <option value="jaunpur">Jaunpur</option>
-        <option value="jhansi">Jhansi</option>
-        <option value="kanpur">Kanpur</option>
-        <option value="kanpur_dehat">Kanpur Dehat</option>
-        <option value="kushinagar">Kushinagar</option>
-        <option value="lakhimpur_kheri">Lakhimpur Kheri</option>
-        <option value="lakhnau">Lucknow</option>
-        <option value="maharajganj">Maharajganj</option>
-        <option value="mahoba">Mahoba</option>
-        <option value="mandi">Mandi</option>
-        <option value="mathura">Mathura</option>
-        <option value="meerut">Meerut</option>
-        <option value="mirzapur">Mirzapur</option>
-        <option value="mau">Mau</option>
-        <option value="moradabad">Moradabad</option>
-        <option value="muzaffarnagar">Muzaffarnagar</option>
-        <option value="pilibhit">Pilibhit</option>
-        <option value="raebareli">Raebareli</option>
-        <option value="rampur">Rampur</option>
-        <option value="saharanpur">Saharanpur</option>
-        <option value="shahjahanpur">Shahjahanpur</option>
-        <option value="shrawasti">Shrawasti</option>
-        <option value="siddharthnagar">Siddharthnagar</option>
-        <option value="sitapur">Sitapur</option>
-        <option value="sonbhadra">Sonbhadra</option>
-        <option value="sultanpur">Sultanpur</option>
-        <option value="unnao">Unnao</option>
-        <option value="varanasi">Varanasi</option>
-    </select>
-
-
+                        <label for="tehsil">Select Tehsil:</label>
+                        <select id="tehsil" name="tehsil" required>
+                          <option value=""> --Select Tahsil--</option>
+                          <option value="saharanpur">Saharanpur</option>
+                          <option value="nakur">Nakur</option>
+                          <option value="behat">Behat</option>
+                          <option value="deoband">Deoband</option>
+                          <option value="rampur_maniharan">Rampur Maniharan</option>
+                        </select>
                     </div>
+
                     <div class="input2">
                         <label name="blood-group2" for="blood-group2">Select blood group</label><br />
                         <select id="blood-group2" class="group2" placeholder="blood group" name="bloodgroupregister" required>
-
-            <option value="">-- Select blood group--
-            </option>
+            <option value="">-- Select blood group--</option>
 						<option value="A positive">A positive (A+)</option>
 						<option value="A negative">A negative (A-)</option>
 						<option value="B positive">B positive (B+)</option>
@@ -107,21 +49,19 @@
 						<option value="AB negative">AB negative (AB-)</option>
 					</select><br />
                     </div>
+
                     <div class="input2">
                         <label for="Village" > Village</label><br>
                         <input type="text" id="Village" placeholder="Enter Your Village" name="village"  required/>
                     </div>
                    
-
                     <div class="input2">
                         <label for="name2" > Name </label><br>
                         <input type="text" id="name2" placeholder="name" name="name" required />
                     </div>
 
-
                     <div class="input2">
                         <label for="contact2" name="contact"> Contact no </label><br>
-
                         <input type="tel" id="contact2" placeholder="contact no" name="contact" minlength="10" maxlength="10" required />
                     </div>
 
@@ -131,7 +71,6 @@
                         <input type="checkbox" style="width: 20px;"onclick="updateInput()" /><br>
                         <input type="tel" id="whatsapp-no2" placeholder="Enter whatsapp no" name="whatsappno" minlength="10" maxlength="10" required>
                     </div>
-
 
                     <div class='register2'
                         style="display: flex;  justify-content: center; align-items: center; margin-bottom: 5px;">
@@ -148,11 +87,7 @@
             </div>
         </div>
 
-        <div id="form4">
-            <div class="registerform" style="display: none;">
-
-            </div>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
