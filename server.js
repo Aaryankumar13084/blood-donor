@@ -84,7 +84,7 @@ app.get('/find',async function(req,res){
             <div class="user-detail">
 
      <h2> Name: ${name} </h2>
-     <h2> District: ${tehsil} </h2>
+     <h2> Tehsil: ${tehsil} </h2>
      <h2> Village: ${village} </h2>
        <h2>Blood group: ${bloodgroup}</h2>
         </div>
@@ -161,7 +161,7 @@ app.get('/registerdonor',async function(req,res){
   />
   <p>PROFILE</p>
   <h2>Name: ${name} </h2>
-        <h2>District: ${tehsil} </h2>
+        <h2>Tehsil: ${tehsil} </h2>
         <h2>Village: ${village}</h2>
 <h2> Blood-group: ${bloodgroupregister}
 </h2>
