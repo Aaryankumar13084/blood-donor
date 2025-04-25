@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const donor = new  mongoose.Schema({
     name:String,
-    district:String,
+    tehsil:String,
     bloodgroup:String,
     village: String,
     contact:Number,
