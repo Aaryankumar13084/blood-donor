@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Donor Finder Application</title>
- <link rel="stylesheet" href="style.css"
-/>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Body background */
@@ -30,40 +27,49 @@
 </head>
 <body class="flex flex-col">
     <!-- Header -->
-      <!-- Simple Header with semi-transparent background -->
-    <header class="bg-red-500 backdrop-blur-sm py-3 text-center border-b">
-        <nav class="space-x-6">
-            <a href="/" class="text-gray-800 no-underline">Home</a>
-            <a href="/findDonor" class="text-gray-800 no-underline">Blood Donor</a>
-            <a href="/register" class="text-gray-800 no-underline font-semibold">Register as Donor</a>
-            <a href="/about" class="text-gray-800 no-underline">About</a>
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-4xl mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl font-bold text-red-600">Blood Donor Finder</h1>
+                <div class="space-x-4">
+                    <a href="/" class="text-gray-700 hover:text-red-600">Home</a>
+                    <a href="/finddonor" class="text-gray-700 hover:text-red-600">Blood Donor</a>
+                    <a href="/register" class="text-gray-700 hover:text-red-600">Register</a>
+                </div>
+            </div>
         </nav>
     </header>
 
     <!-- Main Content -->
-    
-               <div class="home">
-            <div id="blood-div" class="blood-div">
-              <a style="text-align: center; color: white; background: red; border: none; font-size: 20px;" href="/finddonor">
-                <div class="need-blood">
-         I need blood
-                </div></a>
-            </div>
-            <!--OR-->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto text-center">
+            <div class="space-y-8">
+                <!-- I Need Blood Button -->
+                <a href="/finddonor" 
+                   class="inline-block bg-red-600 hover:bg-red-700 text-white text-xl font-bold py-4 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
+                    I Need Blood
+                </a>
 
-            <div id="or">
-                <div id="or2">
-                    <h1> or</h1>
-                </div>
-            </div>
-            <!--register as donor-->
-
-            <div class="register"  style="display: flex; justify-content:center;">
-                <div id="register2" style="background: red;"><a href="/register" style="font-size: 20px; text-align: center; color: white; background: red; border: none;">
-                    Register as donor</a>
+                <!-- OR Separator -->
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center">
+                        <span class="bg-white px-4 text-gray-500">OR</span>
+                    </div>
                 </div>
 
-  
+                <!-- Register Button -->
+                <div class="mt-4">
+                    <a href="/register" 
+                       class="inline-block bg-white hover:bg-gray-50 text-red-600 border-2 border-red-600 text-xl font-bold py-4 px-8 rounded-lg shadow-md transition-all transform hover:scale-105">
+                        Register as Donor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!-- Bottom Image Section -->
     <div class="bottom-background mt-auto"></div>
