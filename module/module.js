@@ -7,6 +7,7 @@ const donor = new  mongoose.Schema({
     village: String,
     contact:Number,
     Whatsapp: Number,
+    password: String,
 })
 
 module.exports = mongoose.model('donors',donor)
