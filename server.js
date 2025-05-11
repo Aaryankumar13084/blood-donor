@@ -63,12 +63,9 @@ app.get('/finddonor', function(req,res){
 })
 
 app.get('/find',async function(req,res){
-    const {district,bloodgroup} = req.query
-    const alldonor = await donor.find({})
-
-    const filterdonor = alldonor.filter(function(finder){
-       return finder.district == district && finder.bloodgroup == bloodgroup
-    })
+    const {tehsil,bloodgroup} = req.query
+    const filterdonor =  await donor.find({'tehsil': tehsil, 'bloodgroup': bloodgroup});
+    
 
     if(filterdonor.length === 0){
 
