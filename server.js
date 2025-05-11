@@ -182,7 +182,7 @@ app.get('/registerdonor',async function(req,res){
         />
         
         <!-- Profile Title -->
-        <h2 class="text-2xl font-bold text-gray-800">PROFILE</h2>
+        <h2 class="text-2xl font-bold text-gray-800">DONOR PROFILE</h2>
         
         <!-- Profile Details -->
         <div class="w-full space-y-3 text-gray-600">
