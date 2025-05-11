@@ -1,176 +1,464 @@
-/* Reset and Base Styles */
+br {
+    margin-top: 20px;
+}
+
+input {
+    padding: 6px;
+    border-radius: 6px;
+    background: rgb(193, 195, 199);
+    width: 92%;
+}
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     text-decoration: none;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: url("https://i.ibb.co/RzbPgMR/Screenshot-2024-11-05-18-57-12-255-com-chrome-beta-2.jpg") no-repeat center center fixed;
-    background-size: cover;
-}
-
-/* Header */
-.main-header {
-    background: rgb(235, 9, 51);
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    color: white;
+select {
+    padding: 6px;
+    border-radius: 6px;
+    background: rgb(193, 195, 199);
+    width: 100%;
 }
 
 .main-header a {
     color: white;
-    font-weight: bold;
-}
-
-/* Form Elements */
-input,
-select {
-    padding: 10px;
-    border-radius: 6px;
-    background: rgb(193, 195, 199);
-    width: 100%;
-    border: none;
-    margin-bottom: 10px;
 }
 
 label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    display: block;
+    font-size: 13px;
 }
 
-.form,
-.main-form,
-.registerform,
-.registerform2 {
+.main-header {
+    background: rgb(235, 9, 51);
+    padding: 10px 0; /* Adjusted for responsiveness */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 30px;
+}
+
+body {
+    background: url("https://i.ibb.co/RzbPgMR/Screenshot-2024-11-05-18-57-12-255-com-chrome-beta-2.jpg");
+}
+
+.blood-div {
+    cursor: pointer; /* Corrected */
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
-/* Form Container */
-.register-form,
-.form-div-2 {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px;
-}
-
-/* Submit Button */
-#register2,
 .home a {
-    padding: 15px;
-    background: red;
-    color: white;
-    border-radius: 99px;
+    height: 30px;
     width: 60%;
+    padding: 10px;
     max-width: 500px;
-    text-align: center;
-    font-size: 18px;
-    margin-top: 20px;
-    transition: 0.3s ease;
+    border-radius: 99px;
+    background: red;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-#register2:hover,
-.home a:hover {
-    background: darkred;
+.register-form {
+    max-width: 400px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
 }
 
-/* Cards */
+.form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+    height: 50vh;
+}
+
+.form .input {
+    margin: 10px;
+}
+
+.form-div-2 {
+    max-width: 400px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    background: lightgrey;
+}
+
+.main-form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.main-form .input2 {
+    margin-bottom: 5px;
+}
+
 .card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: lightgray;
-    border: 2px solid gray;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 15px;
-    width: 90%;
-    max-width: 320px;
-}
-
-.card p {
-    font-size: 15px;
-    margin-top: 10px;
     text-align: center;
 }
 
-/* Text & User Info */
+.main {
+    border: 3px solid gray;
+    border-radius: 6px;
+    background: lightgray;
+    display: flex;
+    width: 320px;
+    margin: 15px;
+    padding: 10px 0px 10px 5px;
+}
+
 .user-detail {
-    padding: 5px;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
 }
 
-.user-detail h2,
-h4 {
-    font-size: 14px;
+
+#link {
+    display: flex;
+    justify-content: center;
+}
+
+.registerform {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.card p {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.user-detail h2 {
+    display: flex;
+    padding: 2px;
+    font-size: 15px;
     color: black;
-    margin: 2px 0;
 }
 
-/* Utilities */
-#link,
+h4 {
+    display: flex;
+    padding: 2px;
+    font-size: 10px;
+    color: black;
+}
+
 .call,
-.call2,
+.call2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.call img {
+    margin: 10px 10px 10px 0px;
+}
+
 #or {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 40px;
 }
 
-.registerform2 {
-    background: lightgray;
+#or2 h1 {
+    color: red;
+}
+
+#register {
+    cursor: pointer; /* Corrected */
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#register2 {
+    width: 60%;
+    height: 30px;
     padding: 15px;
-    border: 3px solid black;
+    max-width: 500px;
+    border-radius: 99px;
+    background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Register submit */
+.registerform2 {
+    border: 5px solid black;
+    color: black;
+    background: lightgray;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 15px;
+    padding: 10px;
     border-radius: 20px;
-    width: 90%;
-    max-width: 250px;
+}
+
+#link {
+    display: flex;
+    justify-content: center;
 }
 
 .registerform2 .p {
+    margin: 5px;
+    display: inline-block;
     background: rgb(12, 242, 39);
+    border: 2px solid rgb(12, 242, 39);
     color: white;
-    padding: 5px 10px;
     border-radius: 99px;
-    margin: 5px 0;
+    justify-content: center;
+    padding: 0 10px;
 }
 
-/* Bottom Background */
+p {
+    display: flex;
+    justify-content: center;
+}
+
+.registerform2 h2 {
+    display: flex;
+    padding: 6px;
+    font-size: 15px;
+}
+
 .bottom-background {
-    background: url("https://i.ibb.co/mJXJGx2/blood-1.png") no-repeat bottom center;
-    background-size: contain;
-    padding: 20px;
+    padding: 10px;
     margin-top: 5%;
+    background: url("https://i.ibb.co/mJXJGx2/blood-1.png") no-repeat bottom center;
     width: 100%;
-    height: 400px;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    .main-header {
-        flex-direction: column;
-    }
-
-    #register2,
-    .home a {
-        width: 90%;
-    }
-
+@media (max-width: 400px) {
     .bottom-background {
-        height: 250px;
+        width: 100%;
     }
+}
+
+@media (min-width: 100px) {
+    .bottom-background {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+.main-background {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px; /* Optional: limit max width */
 }
 
 h1, h2, h3, h4, h5, h6, a {
     cursor: pointer;
+}
+
+.registerform2 img {
+    max-width: 100%;
+    height: auto; /* Ensure the image retains its aspect ratio */
+}
+
+.registerform2, .card {
+    width: 90%; /* Added responsiveness */
+}
+
+@media (max-width: 768px) {
+    .registerform2, .card {
+        width: 100%; /* Adjust for smaller screens */
+    }
+}
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+section {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f8dd30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+section .container {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  background: #fff;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+section .container .user {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+section .container .user .imgBx {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background: #ff0;
+  transition: 0.5s;
+}
+
+section .container .user .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+section .container .user .formBx {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  transition: 0.5s;
+}
+
+section .container .user .formBx form h2 {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+section .container .user .formBx form input {
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  background: #f5f5f5;
+  color: #333;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  margin: 8px 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+section .container .user .formBx form input[type='submit'] {
+  max-width: 100px;
+  background: #677eff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.5s;
+}
+
+section .container .user .formBx form .signup {
+  position: relative;
+  margin-top: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #555;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+section .container .user .formBx form .signup a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #677eff;
+}
+
+section .container .signupBx {
+  pointer-events: none;
+}
+
+section .container.active .signupBx {
+  pointer-events: initial;
+}
+
+section .container .signupBx .formBx {
+  left: 100%;
+}
+
+section .container.active .signupBx .formBx {
+  left: 0;
+}
+
+section .container .signupBx .imgBx {
+  left: -100%;
+}
+
+section .container.active .signupBx .imgBx {
+  left: 0%;
+}
+
+section .container .signinBx .formBx {
+  left: 0%;
+}
+
+section .container.active .signinBx .formBx {
+  left: 100%;
+}
+
+section .container .signinBx .imgBx {
+  left: 0%;
+}
+
+section .container.active .signinBx .imgBx {
+  left: -100%;
+}
+
+@media (max-width: 991px) {
+  section .container {
+    max-width: 400px;
+  }
+
+  section .container .imgBx {
+    display: none;
+  }
+
+  section .container .user .formBx {
+    width: 100%;
+  }
 }
