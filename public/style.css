@@ -137,7 +137,7 @@ body {
 
 .registerform {
     display: flex;
-    width: 100%;
+    width: 80%;
     justify-content: center;
     align-items: center;
 }
