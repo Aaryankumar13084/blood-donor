@@ -177,7 +177,7 @@ app.get('/registerdonor',async function(req,res){
         <div id="form4">
             <div class="registerform" ">
 
-      <div class="registerform2 ">
+      <div style="width:400;" class="registerform2 ">
   <img
     src="https://i.ibb.co/ZMpt5VC/download-1.jpg"
     alt="codeyogi"
