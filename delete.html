@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blood Donor Finder Application</title>
+    <link rel="stylesheet" href="style.css"
+/>
+</head>
+  <div class="main-header">
+  <a href="/">Home</a>
+  <a href="/findDonor">Blood Donor</a>
+  <a href="/register">Register as Donor</a>
+  <a href="/about"> About</a>
+  </div>
+
+
+  <style>
+      .Form {
+        background: url("https://i.ibb.co/RzbPgMR/Screenshot-2024-11-05-18-57-12-255-com-chrome-beta-2.jpg");
+        font-family: Arial, sans-serif;
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+      }
+
+
+      .Form-container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+
+
+      .Form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+
+      .Form-container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+
+      .form-container button:hover {
+        background-color: #e60000;
+      }
+    body {
+        background: url("https://i.ibb.co/RzbPgMR/Screenshot-2024-11-05-18-57-12-255-com-chrome-beta-2.jpg");
+    }
+
+
+    </style>
+<body>  <div class="Form">
+    <form action="/deletereq" method="get" class="Form-container">
+      <h2>Cancel My Requeste</h2>
+      <input style="
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+        background-color: white;"
+        type="tel" placeholder="Mobile Number" name="contact" required />
+      <input style="
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius:   5px; background-color: white;"type="password" placeholder="Password" name="password" />
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+  </body>
+</html>
