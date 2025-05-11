@@ -1,47 +1,99 @@
 <!doctype html>
-<html lang="en">
+<html lang="hi">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blood Donor Finder Application</title>
-    <link rel="stylesheet" href="style.css"
-/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Blood Donor Finder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://i.ibb.co/RzbPgMR/Screenshot-2024-11-05-18-57-12-255-com-chrome-beta-2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Noto Sans Devanagari', sans-serif;
+        }
+        
+        .content-box {
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+        }
+        
+        .main-header {
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+        }
+    </style>
 </head>
 
-<body>
-        <div class="main-header">
-        <a href="/">Home</a>
-        <a href="/finddonor">Blood Donor</a>
-        <a href="/register">Register as Donor</a>
-        <a href="/about"> About</a>
-    </div>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="main-header py-3 text-center border-b shadow-sm">
+        <nav class="space-x-6">
+            <a href="/" class="text-gray-800 no-underline hover:text-red-600 transition">होम</a>
+            <a href="/finddonor" class="text-gray-800 no-underline hover:text-red-600 transition">रक्त दाता</a>
+            <a href="/register" class="text-gray-800 no-underline hover:text-red-600 transition">पंजीकरण</a>
+            <a href="/about" class="text-gray-800 no-underline hover:text-red-600 transition font-semibold">हमारे बारे में</a>
+        </nav>
+    </header>
 
+    <!-- About Section -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto content-box p-8 rounded-xl shadow-lg">
+            <!-- Profile Header -->
+            <div class="flex items-center mb-6">
+                <div class="bg-red-100 p-3 rounded-full mr-4">
+                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800">हिमांशु कश्यप</h1>
+            </div>
 
-            <div id="about">
-                <div class="about" style=" height: 100vh;display:flex; justify-content:center; align-items: center;">
-                    <div class="detail"
-                        style=" display: flex; flex-direction: column;  background: lightgray; border: 3px solid black; border-radius: 7px;width: 300px; padding:10px;">
-                        <h4 style="align-self:center; "> Codeyogi Student</h4>
-                        <p style="font-size:10px;"> मेरा नाम हिमांशु है मै SAM Inter Collage की कक्षा 10th मे पढता हूँ। मै हसनपुर गाँव मे रहता हूँ।<br>
+            <!-- Content -->
+            <div class="space-y-4 text-gray-700 leading-relaxed">
+                <p class="text-lg font-medium text-red-600">कक्षा 10वीं, एस.ए.एम. इंटर कॉलेज</p>
 
-मेरे पिता जी Tailor का काम करते है। और मेरी माता जी House Wife हैं।<br>
-<br>
+                <div class="space-y-4 text-base">
+                    <p>मेरा नाम हिमांशु है और मैं हसनपुर गाँव में रहता हूँ। मेरे पिताजी दर्जी का काम करते हैं और माताजी गृहिणी हैं।</p>
 
-मुझे कोड्योगी के बारे मे अपने विद्यालय के  Computer Teacher Sumit Sahni Sir और Principal Sir के द्वारा पता लगा। मैने कोड योगी May 2024 को JOIN किया था। मै कोडींग अपने पापा जी के फोन से करता हूँ। कोड्योगी से मैने अभी तक HTML,Css और Js तीन भाषाए सिखी है। मुझे डीएम सर की तरफ से एक कीबोर्ड मिला है। जिसको मैं अपने फोन से कनेक्ट करके कोडिंग करता हूं। मैं Software Inginer बनना चाहता हूं।
-<br>
-                          <br>
- मैने एक परोजेक्ट बनाया है मेरा प्रोजेक्ट Blood Donor ओर जिनको Blood की जरूरत है उनको आपस में कनेक्ट कराने के लिए बनाया गया है हमारे देश मे लगभग 1.5 करोड की Blood Unit की Requirement है  जिसके अभाव से 2-3 मिलियन लोग अपनी जान गवा देते हैं। इसी कमी को पूरा करने के लिए मैने ये प्रोटेक्ट बनाया है जिससे जिनको Blood की जरूरत है वह हमारी Web Application पर आकर अपनी Requirement डाल सकते हैं। और उन्हें blood donor की List दिखाई दे जाएगी। हमने Blood Donor की List में Donor का मोबाइल न० और वाटसप न० दोनो रखे है जिससे Donor से सम्पर्क किया जा सकता है और अगर कोई अपना Blood Donate करना चाहता है तो  वह Register भी
-कर सकता है।
-                        </p>
+                    <p>मुझे कोडयोगी के बारे में मेरे कंप्यूटर शिक्षक श्री सुमित साहनी सर और प्रधानाचार्य सर के माध्यम से पता चला। मैंने मई 2024 में कोडयोगी जॉइन किया और अब तक HTML, CSS और JavaScript सीखी है।</p>
 
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-600">
+                        <p class="font-medium">मेरा लक्ष्य:</p>
+                        <p>मैं एक सॉफ्टवेयर इंजीनियर बनना चाहता हूँ और डिजिटल इंडिया में योगदान देना चाहता हूँ।</p>
+                    </div>
+
+                    <h2 class="text-xl font-semibold mt-6 text-red-600">रक्तदान परियोजना</h2>
+                    <p>हमारे देश में प्रतिवर्ष लगभग 1.5 करोड़ यूनिट रक्त की कमी होती है, जिसके कारण 20-30 लाख लोगों की मृत्यु हो जाती है। इस समस्या के समाधान के लिए मैंने यह वेब एप्लिकेशन बनाई है जो:</p>
+                    
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>रक्तदाताओं और रक्त की आवश्यकता वाले लोगों को जोड़ता है</li>
+                        <li>रक्तदाताओं का पंजीकरण सरल बनाता है</li>
+                        <li>आपातकालीन स्थितियों में त्वरित सहायता प्रदान करता है</li>
+                    </ul>
+
+                    <div class="mt-6 p-4 bg-green-50 rounded-lg border-l-4 border-green-600">
+                        <p class="font-medium">TECHNICAL DETAILS:</p>
+                        <ul class="list-disc pl-6">
+                            <li>Frontend: HTML, CSS, JavaScript</li>
+                            <li>Responsive Design</li>
+                            <li>User-friendly Interface</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- Footer Note -->
+            <div class="mt-8 pt-6 border-t border-gray-200 text-center text-sm text-gray-600">
+                <p>नागालैंड रक्तदाता नेटवर्क</p>
+                <p class="mt-1">जीवन बचाने की दिशा में एक कदम</p>
+            </div>
+        </div>
+    </main>
 
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
-
 </html>
