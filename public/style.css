@@ -88,12 +88,11 @@ black;
 }
 
 .form-div-2 {
-    max-width: 400px;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 5px;
-    background: lightgrey;
-}
+         background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        width: 300px;}
 
 .main-form {
     display: flex;
