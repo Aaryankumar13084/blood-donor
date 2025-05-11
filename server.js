@@ -172,7 +172,7 @@ app.get('/registerdonor',async function(req,res){
    <script src="https://cdn.tailwindcss.com"></script>
     
 <div class"main-form">
-    <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-6 mt-8">
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-10 mt-40">
     <div class="flex flex-col items-center space-y-4">
         <!-- Profile Image -->
         <img 
