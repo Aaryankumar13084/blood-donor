@@ -6,6 +6,21 @@
     <title>Blood Donor Finder Application</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Background image styling */
+        body {
+            background-image: url('https://i.ibb.co/RzbPgMR/Screenshot-2024-11-05-18-57-12-255-com-chrome-beta-2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        
+        /* Form container with semi-transparent background */
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+        }
+        
         /* Keep original input styles exactly as they were */
         .original-input select {
             width: 100%;
@@ -21,11 +36,17 @@
             font-weight: 500;
             color: #555;
         }
+        
+        /* Header with slight transparency */
+        .page-header {
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+        }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
-    <!-- Simple Header (like in first image) -->
-    <div class="bg-white py-4 text-center border-b">
+<body class="min-h-screen">
+    <!-- Simple Header with semi-transparent background -->
+    <div class="page-header py-4 text-center border-b">
         <a href="/" class="px-4 text-gray-800 no-underline">Home</a>
         <a href="/findDonor" class="px-4 text-gray-800 no-underline">Blood Donor</a>
         <a href="/register" class="px-4 text-gray-800 no-underline">Register as Donor</a>
@@ -33,7 +54,7 @@
     </div>
 
     <!-- Nagaland-themed Form Container -->
-    <div class="max-w-md mx-auto my-8 bg-white p-8 rounded-lg shadow-md">
+    <div class="max-w-md mx-auto my-8 form-container p-8 rounded-lg shadow-lg">
         <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Blood Donor Finder</h1>
         
         <!-- Original Input Fields (unchanged) -->
