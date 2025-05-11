@@ -169,35 +169,61 @@ app.get('/registerdonor',async function(req,res){
    await newdonor.save()
 
     res.send(`${header}
-           <div class="main-form">
+   <script src="https://cdn.tailwindcss.com"></script>
+    <style>
 
-
-
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-6 mt-8">
+    <div class="flex flex-col items-center space-y-4">
+        <!-- Profile Image -->
+        <img 
+            src="https://i.ibb.co/ZMpt5VC/download-1.jpg" 
+            alt="codeyogi"
+            class="w-24 h-24 border-2 border-green-500 rounded-full"
+        />
         
-            <div class="registerform" ">
-
-      <div style="width:350;" class="registerform2 ">
-  <img
-    src="https://i.ibb.co/ZMpt5VC/download-1.jpg"
-    alt="codeyogi"
-    style="width: 100px; height: 100px; align-self: center; border: 2px solid green; border-radius: 99px;"
-  />
-  <p>PROFILE</p>
-  <h2>Name: ${name} </h2>
-        <h2>Tehsil: ${tehsil} </h2>
-        <h2>Village: ${village}</h2>
-<h2> Blood-group: ${bloodgroupregister}
-</h2>
-<h2>Phone No: ${contact} </h2>
-<h2>Whatsapp No: ${whatsappno} </h2>
-  <div id="link">
-    <a class="p" href="/" style="background: red;">Back</a>
-  
-      </div>
-</div>
-<div>
-
+        <!-- Profile Title -->
+        <h2 class="text-2xl font-bold text-gray-800">PROFILE</h2>
+        
+        <!-- Profile Details -->
+        <div class="w-full space-y-3 text-gray-600">
+            <div class="flex justify-between border-b pb-2">
+                <span class="font-medium">Name:</span>
+                <span>${name}</span>
             </div>
+            
+            <div class="flex justify-between border-b pb-2">
+                <span class="font-medium">Tehsil:</span>
+                <span>${tehsil}</span>
+            </div>
+            
+            <div class="flex justify-between border-b pb-2">
+                <span class="font-medium">Village:</span>
+                <span>${village}</span>
+            </div>
+            
+            <div class="flex justify-between border-b pb-2">
+                <span class="font-medium">Blood Group:</span>
+                <span class="text-red-600 font-semibold">${bloodgroupregister}</span>
+            </div>
+            
+            <div class="flex justify-between border-b pb-2">
+                <span class="font-medium">Phone No:</span>
+                <span class="text-blue-600">${contact}</span>
+            </div>
+            
+            <div class="flex justify-between border-b pb-2">
+                <span class="font-medium">Whatsapp No:</span>
+                <span class="text-green-600">${whatsappno}</span>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <a href="/" 
+           class="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white text-center rounded-lg transition-colors duration-200">
+            Back to Home
+        </a>
+    </div>
+</div>
             ${footer}`)
 })
 
