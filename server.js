@@ -169,15 +169,14 @@ app.get('/registerdonor',async function(req,res){
    await newdonor.save()
 
     res.send(`${header}
-        <!---register div-->
-            <div class="main-form">
+           <div class="main-form">
 
 
 
-        <div id="form4">
+        
             <div class="registerform" ">
 
-      <div style="width:400;" class="registerform2 ">
+      <div style="width:350;" class="registerform2 ">
   <img
     src="https://i.ibb.co/ZMpt5VC/download-1.jpg"
     alt="codeyogi"
@@ -193,8 +192,10 @@ app.get('/registerdonor',async function(req,res){
 <h2>Whatsapp No: ${whatsappno} </h2>
   <div id="link">
     <a class="p" href="/" style="background: red;">Back</a>
-  </div>
+  
       </div>
+</div>
+<div>
 
             </div>
             ${footer}`)
