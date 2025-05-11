@@ -170,7 +170,7 @@ app.get('/registerdonor',async function(req,res){
 
     res.send(`${header}
    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
+    
 
     <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-6 mt-8">
     <div class="flex flex-col items-center space-y-4">
