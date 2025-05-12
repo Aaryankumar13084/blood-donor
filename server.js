@@ -77,23 +77,40 @@ app.get('/find',async function(req,res){
     for(let x = 0; x < filterdonor.length; x++){
 
         const {name, village,tehsil, bloodgroup, contact, Whatsapp}=filterdonor[x]
-       card += ` <div class="main" style="position: relative;" >
-            <div class="user-detail">
+       card += `
+<script src="https://cdn.tailwindcss.com"></script>
+ <div class="relative bg-white rounded-lg shadow-md p-4 mb-4 hover:shadow-lg transition-shadow duration-200">
+    <!-- User Details -->
+    <div class="space-y-2 mb-4">
+        <h2 class="text-lg font-semibold text-gray-800">Name: ${name}</h2>
+        <div class="grid grid-cols-2 gap-2 text-gray-600">
+            <p><span class="font-medium">Tehsil:</span> ${tehsil}</p>
+            <p><span class="font-medium">Village:</span> ${village}</p>
+            <p class="col-span-2"><span class="font-medium">Blood Group:</span> ${bloodgroup}</p>
+        </div>
+    </div>
 
-     <h2> Name: ${name} </h2>
-     <h2> Tehsil: ${tehsil} </h2>
-     <h2> Village: ${village} </h2>
-       <h2>Blood group: ${bloodgroup}</h2>
-        </div>
-        <div style="position: relative;" class="call">
-       <a href="tel:+91${contact}">   <img style="width: 50px;"src="https://cdn-icons-png.flaticon.com/128/5585/5585856.png"/></a>
-       <a href="https://wa.me/+91${Whatsapp}">     <img style="width:50px;"src="https://cdn-icons-png.flaticon.com/128/3670/3670051.png"/></a>
-       
-        </div>
-        <a href="/delete"><img style="width: 30px;     position:absolute;
-            right: 0;
-            bottom: 0; border-radius: 99px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV1ouiYq1xZbW7Pv61gy4Q1PdcZ-X_W3Y132O9Db_FIaGciVn0YZqPsKrZ&s=10"/></a>
-        </div>
+    <!-- Contact Buttons -->
+    <div class="flex space-x-4 items-center">
+        <a href="tel:+91${contact}" class="hover:scale-110 transition-transform">
+            <img src="https://cdn-icons-png.flaticon.com/128/5585/5585856.png" 
+                 alt="Call icon"
+                 class="w-12 h-12">
+        </a>
+        <a href="https://wa.me/+91${Whatsapp}" class="hover:scale-110 transition-transform">
+            <img src="https://cdn-icons-png.flaticon.com/128/3670/3670051.png" 
+                 alt="WhatsApp icon"
+                 class="w-12 h-12">
+        </a>
+    </div>
+
+    <!-- Delete Button -->
+    <a href="/delete" class="absolute bottom-2 right-2 hover:scale-125 transition-transform">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV1ouiYq1xZbW7Pv61gy4Q1PdcZ-X_W3Y132O9Db_FIaGciVn0YZqPsKrZ&s=10" 
+             alt="Delete icon"
+             class="w-8 h-8 rounded-full border-2 border-red-100 hover:border-red-200">
+    </a>
+</div>
      ` 
     }
 
