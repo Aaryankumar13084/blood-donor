@@ -1,194 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  
-    <meta charset="UTF-8" />
-<meta name="google-site-verification" content="2fSZBTwxXNGqzfuaP8S4teNhLIENVXc2-g9Pcvddmdw" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blood Donor Finder Application</title>
-    <link rel="stylesheet" href="style.css"
-/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="2fSZBTwxXNGqzfuaP8S4teNhLIENVXc2-g9Pcvddmdw" />
+  <title>Blood Donor Finder | Find Blood Donors Near You</title>
 
-<link rel="icon" type="image/png" href="images.jpeg">
+  <!-- Meta Tags -->
+  <meta name="title" content="Blood Donor Finder | Find Blood Donors Near You">
+  <meta name="description" content="Easily find blood donors near you. Our platform connects donors and recipients in real-time. Fast, reliable, and free.">
+  <meta name="keywords" content="blood donor, blood donation, find blood donors, donate blood, blood app">
+  <meta name="author" content="Your Name">
 
-<!-- Primary Meta Tags -->
-<title>Blood Donor Finder | Find Blood Donors Near You</title>
-<meta name="title" content="Blood Donor Finder | Find Blood Donors Near You">
-<meta name="description" content="Easily find blood donors near you. Our platform connects donors and recipients in real-time. Fast, reliable, and free.">
-<meta name="keywords" content="blood donor, blood donation, find blood donors, donate blood, blood app">
-<meta name="author" content="Your Name">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blood-donor-finder.up.railway.app/">
+  <meta property="og:title" content="Blood Donor Finder | Find Blood Donors Near You">
+  <meta property="og:description" content="Easily find blood donors near you. Our platform connects donors and recipients in real-time.">
+  <meta property="og:image" content="https://blood-donor-finder.up.railway.app/images.jpeg">
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://blood-donor-finder.up.railway.app/">
-<meta property="og:title" content="Blood Donor Finder | Find Blood Donors Near You">
-<meta property="og:description" content="Easily find blood donors near you. Our platform connects donors and recipients in real-time.">
-<meta property="og:image" content="https://blood-donor-finder.up.railway.app/images.jpeg">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://blood-donor-finder.up.railway.app/">
+  <meta property="twitter:title" content="Blood Donor Finder | Find Blood Donors Near You">
+  <meta property="twitter:description" content="Easily find blood donors near you. Our platform connects donors and recipients in real-time.">
+  <meta property="twitter:image" content="https://blood-donor-finder.up.railway.app/images.jpeg">
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://blood-donor-finder.up.railway.app/">
-<meta property="twitter:title" content="Blood Donor Finder | Find Blood Donors Near You">
-<meta property="twitter:description" content="Easily find blood donors near you. Our platform connects donors and recipients in real-time.">
-<meta property="twitter:image" content="https://blood-donor-finder.up.railway.app/images.jpeg">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images.jpeg">
 
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Blood Donor Finder",
-  "url": "https://blood-donor-finder.up.railway.app/",
-  "description": "Find blood donors near you instantly. Connect with blood donors and save lives through our reliable and fast blood donation platform.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": https://blood-donor-finder.up.railway.app/?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  },
-  "publisher": {
-    "@type": "Organization",
+  <!-- Structured Data (Fixed) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
     "name": "Blood Donor Finder",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://blood-donor-finder.up.railway.app/images.jpeg"
+    "url": "https://blood-donor-finder.up.railway.app/",
+    "description": "Find blood donors near you instantly. Connect with blood donors and save lives through our reliable and fast blood donation platform.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://blood-donor-finder.up.railway.app/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Blood Donor Finder",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blood-donor-finder.up.railway.app/images.jpeg"
+      }
     }
   }
-}
-</script>
+  </script>
+
+  <!-- Loader CSS -->
+  <style>
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .logo-loader img {
+      width: 300px;
+      animation: fadeScale 1.5s ease-in-out infinite;
+    }
+
+    @keyframes fadeScale {
+      0% { opacity: 0.5; transform: scale(0.95); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.5; transform: scale(0.95); }
+    }
+
+    .main-content { display: none; }
+    .loaded .main-content { display: block; }
+    .loaded .loader-container { opacity: 0; pointer-events: none; }
+  </style>
 </head>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loader Example</title>
-    <style>
-        /* Loader container */
-        .loader-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        /* Logo animation */
-        .logo-loader img {
-            width: 300px;
-            animation: fadeScale 1.5s ease-in-out infinite;
-        }
-
-        /* Keyframes for smooth animation */
-        @keyframes fadeScale {
-            0% {
-                opacity: 0.5;
-                transform: scale(0.95);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-            100% {
-                opacity: 0.5;
-                transform: scale(0.95);
-            }
-        }
-
-        /* Hide main content initially */
-        .main-content {
-            display: none;
-        }
-
-        /* When loaded, show main content and hide loader */
-        .loaded .main-content {
-            display: block;
-        }
-
-        .loaded .loader-container {
-            opacity: 0;
-            pointer-events: none;
-        }
-    </style>
-</head>
-
-    <!-- Loader Section -->
-    <div class="loader-container" id="loader">
-        <div class="logo-loader">
-            <img src="images.jpeg" alt="Website Logo">
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- बाकी वेबसाइट कंटेंट -->
-    </div>
-
-    <!-- JavaScript -->
-    <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('loader').classList.add('loaded');
-                document.body.classList.add('loaded');
-            }, 1500);
-        });
-    </script>
-
-</html>
 
 <body>
-    <div class="main-header">
-        <a href="/">Home</a>
-        <a href="/finddonor">Blood Donor</a>
-        <a href="/register">Register as Donor</a>
-        <a href="/about"> About</a>
+  <!-- Loader Section -->
+  <div class="loader-container" id="loader">
+    <div class="logo-loader">
+      <img src="images.jpeg" alt="Website Logo">
     </div>
-    
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="main-header">
+      <a href="/">Home</a>
+      <a href="/finddonor">Blood Donor</a>
+      <a href="/register">Register as Donor</a>
+      <a href="/about">About</a>
+    </div>
+
     <div class="main-div">
-        <!--i src="n" a blood -->
-        <div class="home">
-            <div id="blood-div" class="blood-div">
-              <a style="text-align: center; color: white; background: red; border: none; font-size: 20px;" href="/finddonor">
-                <div class="need-blood">
-         I need blood
-                </div></a>
-            </div>
-            <!--OR-->
-
-            <div id="or">
-                <div id="or2">
-                    <h1> or</h1>
-                </div>
-            </div>
-            <!--register as donor-->
-
-            <div class="register"  style="display: flex; justify-content:center;">
-                <div id="register2" style="background: red;"><a href="/register" style="font-size: 20px; text-align: center; color: white; background: red; border: none;">
-                    Register as donor</a>
-                </div>
-
-            </div>
-
-
-
-            <div class="main-background">
-                <div class="bottom-background">
-
-                </div>
-            </div>
-
+      <div class="home">
+        <!-- I need blood -->
+        <div id="blood-div" class="blood-div">
+          <a style="text-align: center; color: white; background: red; border: none; font-size: 20px;" href="/finddonor">
+            <div class="need-blood">I need blood</div>
+          </a>
         </div>
 
-      
-    
+        <!-- OR -->
+        <div id="or">
+          <div id="or2">
+            <h1>or</h1>
+          </div>
         </div>
-        <script src="script.js"></script>
-       
-       </body>
-           </html>
+
+        <!-- Register as donor -->
+        <div class="register" style="display: flex; justify-content:center;">
+          <div id="register2" style="background: red;">
+            <a href="/register" style="font-size: 20px; text-align: center; color: white; background: red; border: none;">Register as donor</a>
+          </div>
+        </div>
+
+        <div class="main-background">
+          <div class="bottom-background"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for Loader -->
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('loaded');
+        document.body.classList.add('loaded');
+      }, 1500);
+    });
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
