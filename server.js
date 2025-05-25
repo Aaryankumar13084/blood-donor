@@ -244,7 +244,7 @@ app.get('/login', async function(req,res){
 const userAccount = await account.find({'contact': contact, 'password': password})
 
     const allhistory = await donor.find({'contact': contact, 'password': password})
-console.log(allhistory.name)
+console.log(allhistory[0].name)
     
     if(userAccount.length === 0){
             return res.send (`<script> alert("Invalid Credentials")
@@ -345,7 +345,7 @@ console.log(allhistory.name)
             <div class="donor-container">
                 <table class="donor-table">
                     <thead>
-                        <tr>
+                         <tr>
                             <th>Name</th>
                             <th>Village</th>
                             <th>Tehsil</th>
