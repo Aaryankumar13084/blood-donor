@@ -243,8 +243,9 @@ app.get('/login', async function(req,res){
     const {contact, password} = req.query
 const userAccount = await account.find({'contact': contact, 'password': password})
 
-    const allhistory = await donor.find({'contact': contact, 'password': password})
-console.log(allhistory[0].name)
+    const allhistory = await donor.find({'contact': contact})
+    
+console.log(allhistory[0])
     
     if(userAccount.length === 0){
             return res.send (`<script> alert("Invalid Credentials")
