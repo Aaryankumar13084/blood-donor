@@ -240,16 +240,18 @@ app.get('/profile', function(req,res){
 })
 
 app.get('/login', async function(req,res){
-    const {contact, password} = req.query;
-    const userAccount = await account.find({'contact': contact, 'password': password});
-    const allhistory = await donor.find({'contact': contact, 'password': password});
-    
-    if(userAccount.length === 0 || allhistory.length === 0){
-        return res.send(`<script> alert("Invalid Credentials");
-            window.location.href = "/profile";</script>`);
-    }
+    const {contact, password} = req.query
+const userAccount = await account.find({'contact': contact, 'password': password})
 
-    const donorName = allhistory[0].name;
+    const allhistory = await donor.find({'contact': contact, 'password': password})
+console.log(allhistory[0].name)
+    
+    if(userAccount.length === 0){
+            return res.send (`<script> alert("Invalid Credentials")
+            window.location.href = "/profile";</script>
+              `)
+    }else{
+console.log(allhistory.name)
             let card = ""
         `<!DOCTYPE html>
         <html lang="en">
