@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="hi">
+
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Blood Donor Finder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+           /* Background image styling */
+        body {
+            background-image: url('https://i.ibb.co/RzbPgMR/Screenshot-2024-11-05-18-57-12-255-com-chrome-beta-2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+
+        .content-box {
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+        }
+
+        .main-header {
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <header class="bg-red-600 backdrop-blur-sm py-3 text-center border-b">
+        <nav class="space-x-6">
+            <a href="/" class="text-white no-underline">Home</a>
+            <a href="/findDonor" class="text-white no-underline">Blood Donor</a>
+            <a href="/register" class="text-white no-underline font-semibold">Register as Donor</a>
+            <a href="/profile" class="text-white no-underline">About</a>
+        </nav>
+    </header>
+    <style>
+        
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            width: 305px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .tab {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .tab div {
+            padding: 10px;
+            border-bottom: 2px solid transparent;
+        }
+        .tab .active {
+            border-bottom: 2px solid #3498db;
+            font-weight: bold;
+        }
+        .form {
+            display: none;
+        }
+        .form.active {
+            display: block;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: green;
+        }
+        .login{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:10%;
+            height: 80vh;
+        }
+    </style>
+</head>
+<body>
+<div class="login">
+<div class="container">
+    <div class="tab">
+        <div id="loginTab" class="active" onclick="showForm('login')">Login</div>
+        <div id="signupTab" onclick="showForm('signup')">Signup</div>
+    </div>
+
+    <div id="loginForm" class="form active">
+        <form action="/login" method="get">
+        <h3>Login</h3>
+        <input type="tel" placeholder="Mobile Number">
+        <input type="password" placeholder="Password">
+        <button type="submit">Login</button>
+            </form>
+    </div>
+
+    <div id="signupForm" class="form">
+        <form action="/signup" method="get">
+        <h3>Signup</h3>
+      
+        <input type="tel" placeholder="Mobile Number">
+        <input type="password" placeholder="Password">
+        <button type="submit"> Signup</button>
+        </form>
+    </div>
+</div>
+    </div>
+<script>
+    function showForm(form) {
+        // Tabs
+        document.getElementById('loginTab').classList.remove('active');
+        document.getElementById('signupTab').classList.remove('active');
+
+        // Forms
+        document.getElementById('loginForm').classList.remove('active');
+        document.getElementById('signupForm').classList.remove('active');
+
+        if(form === 'login') {
+            document.getElementById('loginTab').classList.add('active');
+            document.getElementById('loginForm').classList.add('active');
+        } else {
+            document.getElementById('signupTab').classList.add('active');
+            document.getElementById('signupForm').classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -12,6 +12,8 @@ mongoose.connect('mongodb+srv://blood:blood1234@blood-donor.s0bwrss.mongodb.net/
 });
 
 const donor = require('./module/module.js');
+const history = require('./module/history.js')
+const account = require('./module/account.js')
 
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -37,7 +39,7 @@ color; white;
         <a href="/">Home</a>
         <a href="/findDonor">Blood Donor</a>
         <a href="/register">Register as Donor</a>
-        <a href="/about"> About</a>
+        <a href="/profile"> About</a>
     </div>
 `
 
@@ -129,6 +131,8 @@ app.get('/deletereq', async function(req,res){
     const {contact, password} = req.query;
     console.log("Received:", contact, password); // ← This prints: undefined undefined
     const isdonor = await donor.find({'contact': contact , 'password': password});
+    history.insertMany(isdonor)
+    console.log("History:", history);
     console.log("Found:", isdonor);
 
     if(isdonor.length === 0){
@@ -230,6 +234,151 @@ app.get('/registerdonor',async function(req,res){
 </div>
             ${footer}`)
 })
+
+app.get('/profile', function(req,res){
+    res.sendFile(path.join(__dirname, 'profile.html'))
+})
+
+app.get('/login', async function(req,res){
+    const {contact, password} = req.query
+const account = await account.find({'contact': contact, 'password': password})
+
+    const allhistory = await donor.find({'contact': contact, 'password': password})
+console.log(allhistory.name)
+    
+    if(account.length === 0){
+            return res.send (`<script> alert("Invalid Credentials")
+            window.location.href = "/profile";</script>
+              `)
+    }else{
+console.log(allhistory.name)
+            let card = ""
+        `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Blood Donor History</title>
+            <style>
+                * {
+                    box-sizing: border-box;
+                }
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 10px;
+                    background-color: #f5f5f5;
+                    font-size: 14px;
+                }
+                h1 {
+                    color: #d32f2f;
+                    text-align: center;
+                    font-size: 1.5rem;
+                    margin: 10px 0;
+                }
+                .search-container {
+                    margin-bottom: 15px;
+                    width: 100%;
+                }
+                #searchInput {
+                    padding: 8px 12px;
+                    width: 100%;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
+                .donor-container {
+                    width: 100%;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                }
+                .donor-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    background-color: white;
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                    min-width: 600px; /* Minimum width for the table */
+                }
+                .donor-table th, .donor-table td {
+                    padding: 8px 10px;
+                    text-align: left;
+                    border-bottom: 1px solid #ddd;
+                }
+                .donor-table th {
+                    background-color: #d32f2f;
+                    color: white;
+                    font-weight: bold;
+                    position: sticky;
+                    top: 0;
+                }
+                .donor-table tr:hover {
+                    background-color: #f9f9f9;
+                }
+                .no-donors {
+                    text-align: center;
+                    padding: 20px;
+                    color: #666;
+                }
+
+                /* Mobile-specific adjustments */
+                @media (max-width: 600px) {
+                    body {
+                        padding: 5px;
+                    }
+                    .donor-table th, .donor-table td {
+                        padding: 6px 8px;
+                        font-size: 13px;
+                    }
+                    .donor-table {
+                        min-width: 100%; /* Allow table to be scrollable */
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Blood Donor History</h1>
+
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search donors..." onkeyup="searchDonors()">
+            </div>
+
+            <div class="donor-container">
+                <table class="donor-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Village</th>
+                            <th>Tehsil</th>
+                            <th>Blood</th>
+                            <th>Contact</th>
+                           <th>Date</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="donorTableBody">
+                        <!-- Donor data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+  
+                            
+               
+        </body>
+        </html>
+         `     
+    }
+})
+
+function add(n,p){
+    const newaccount = new account({
+        contact: n,
+        password: p,
+    })
+    newaccount.save()
+}
+
+
 
 // Start the server
 app.listen(8080, function() {

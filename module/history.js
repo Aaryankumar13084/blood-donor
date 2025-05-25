@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const donor = new  mongoose.Schema({
+const history = mongoose.Schema({
     name:String,
     tehsil:String,
     bloodgroup:String,
@@ -8,10 +8,6 @@ const donor = new  mongoose.Schema({
     contact:Number,
     Whatsapp: Number,
     password: String,
-   date:{
-       type:Date,
-       default:Date.now
-   }
 })
 
-module.exports = mongoose.model('donors',donor)
+module.exports = mongoose.model('history',history)

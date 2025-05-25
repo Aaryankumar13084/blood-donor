@@ -2,6 +2,9 @@ br {
     margin-top: 20px;
 }
 
+button:hover {
+    background-color: green;
+}
 input {
     padding: 6px;
     border-radius: 6px;
