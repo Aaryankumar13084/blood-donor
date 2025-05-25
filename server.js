@@ -173,7 +173,7 @@ app.get('/registerdonor',async function(req,res){
     res.send(`${header}
    <script src="https://cdn.tailwindcss.com"></script>
     
-<div class"main-form" style="text-align: center;">
+<div class="main-form flex justify-center">
     <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-6 mt-20 mr-10 ml-10 mb-10">
     <div class="flex flex-col items-center space-y-4">
         <!-- Profile Image -->
