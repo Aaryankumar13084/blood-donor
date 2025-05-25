@@ -241,12 +241,12 @@ app.get('/profile', function(req,res){
 
 app.get('/login', async function(req,res){
     const {contact, password} = req.query
-const account = await account.find({'contact': contact, 'password': password})
+const userAccount = await account.find({'contact': contact, 'password': password})
 
     const allhistory = await donor.find({'contact': contact, 'password': password})
 console.log(allhistory.name)
     
-    if(account.length === 0){
+    if(userAccount.length === 0){
             return res.send (`<script> alert("Invalid Credentials")
             window.location.href = "/profile";</script>
               `)
