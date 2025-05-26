@@ -30,8 +30,8 @@
       <div id="loginForm" class="block">
         <form action="/login" method="get" class="space-y-3">
           <h3 class="text-lg font-semibold text-center">Login</h3>
-          <input name="contact" type="tel" placeholder="Mobile Number" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-          <input name="password" type="password" placeholder="Password" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <input name="contact" type="tel" placeholder="Mobile Number" required  class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <input name="password" type="password" placeholder="Password" required  class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
           <button type="submit" class="w-full py-2 bg-red-600 text-white rounded hover:bg-green-600">Login</button>
         </form>
       </div>
@@ -39,8 +39,8 @@
       <div id="signupForm" class="hidden">
         <form action="/signup" method="get" class="space-y-3">
           <h3 class="text-lg font-semibold text-center">Signup</h3>
-          <input name="contact" type="tel" placeholder="Mobile Number" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-          <input name="password" type="password" placeholder="Password" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <input name="contact" type="tel" placeholder="Mobile Number" required class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <input name="password" type="password" placeholder="Password" required  class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
           <button type="submit" class="w-full py-2 bg-red-600 text-white rounded hover:bg-green-600">Signup</button>
         </form>
       </div>
