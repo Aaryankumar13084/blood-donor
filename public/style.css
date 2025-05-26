@@ -271,7 +271,7 @@ p {
 .main-background {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: auto;
     max-width: 1200px; /* Optional: limit max width */
 }
 
