@@ -35,7 +35,7 @@ label {
 
 .main-header {
     background: rgb(235, 9, 51);
-    padding: 10px 0; /* Adjusted for responsiveness */
+    padding: 25px 0; /* Adjusted for responsiveness */
     display: flex;
     flex-direction: row;
     align-items: center;

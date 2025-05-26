@@ -175,7 +175,7 @@ app.get('/registerdonor',async function(req,res){
    await newdonor.save()
 
     res.send(`${header}
-   <script src="https://cdn.tailwindcss.com"></script>
+     </a><script src="https://cdn.tailwindcss.com"></script>
     
 <div class="main-form flex justify-center">
     <div class="min-w-[300px] mx-auto bg-white rounded-xl shadow-lg p-6 mt-5 mr-5 ml-5 mb-1
@@ -228,7 +228,7 @@ app.get('/registerdonor',async function(req,res){
         <a href="/" 
            class="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white text-center rounded-lg transition-colors duration-200">
             Back to Home
-        </a>
+      
     </div>
 </div>
 </div>
@@ -241,145 +241,121 @@ app.get('/profile', function(req,res){
 
 app.get('/login', async function(req,res){
     const {contact, password} = req.query
-const userAccount = await account.find({'contact': contact, 'password': password})
 
-    const allhistory = await donor.find({'contact': contact})
-    
-console.log(allhistory[0])
-    
+    console.log(contact, password)
+
+    const userAccount = await account.find({'contact': contact, 'password': password})
+    console.log(userAccount)
+
+    const allhistory = await history.find({'contact': contact, 'password': password})
+    console.log(allhistory)
+
     if(userAccount.length === 0){
-            return res.send (`<script> alert("Invalid Credentials")
-            window.location.href = "/profile";</script>
-              `)
-    }else{
-console.log(allhistory.name)
-            let card = ""
-        `<!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Blood Donor History</title>
-            <style>
-                * {
-                    box-sizing: border-box;
-                }
-                body {
-                    font-family: Arial, sans-serif;
-                    margin: 0;
-                    padding: 10px;
-                    background-color: #f5f5f5;
-                    font-size: 14px;
-                }
-                h1 {
-                    color: #d32f2f;
-                    text-align: center;
-                    font-size: 1.5rem;
-                    margin: 10px 0;
-                }
-                .search-container {
-                    margin-bottom: 15px;
-                    width: 100%;
-                }
-                #searchInput {
-                    padding: 8px 12px;
-                    width: 100%;
-                    border: 1px solid #ddd;
-                    border-radius: 4px;
-                    font-size: 14px;
-                }
-                .donor-container {
-                    width: 100%;
-                    overflow-x: auto;
-                    -webkit-overflow-scrolling: touch;
-                }
-                .donor-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    background-color: white;
-                    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-                    min-width: 600px; /* Minimum width for the table */
-                }
-                .donor-table th, .donor-table td {
-                    padding: 8px 10px;
-                    text-align: left;
-                    border-bottom: 1px solid #ddd;
-                }
-                .donor-table th {
-                    background-color: #d32f2f;
-                    color: white;
-                    font-weight: bold;
-                    position: sticky;
-                    top: 0;
-                }
-                .donor-table tr:hover {
-                    background-color: #f9f9f9;
-                }
-                .no-donors {
-                    text-align: center;
-                    padding: 20px;
-                    color: #666;
-                }
+        return res.send (`<script> alert("Invalid Credentials")
+        window.location.href = "/profile";</script>`)
+    } else {
+        let card = ""
+        for(let x = 0; x < allhistory.length; x++){
+            const {name, village,tehsil, bloodgroup, contact, date}=allhistory[x]
+            card += `<tr>
+                <td class="px-4 py-2">${name || 'N/A'}</td>
+                <td class="px-4 py-2">${village || 'N/A'}</td>
+                <td class="px-4 py-2">${tehsil || 'N/A'}</td>
+                <td class="px-4 py-2">${bloodgroup || 'N/A'}</td>
+                <td class="px-4 py-2"><a href="tel:${contact || ''}">${contact || 'N/A'}</a></td>
+                <td class="px-4 py-2">${date.toLocaleDateString('en-GB')}</td>
+            </tr>`;
+        }
 
-                /* Mobile-specific adjustments */
-                @media (max-width: 600px) {
-                    body {
-                        padding: 5px;
-                    }
-                    .donor-table th, .donor-table td {
-                        padding: 6px 8px;
-                        font-size: 13px;
-                    }
-                    .donor-table {
-                        min-width: 100%; /* Allow table to be scrollable */
-                    }
+        const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donor History</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-100 font-sans text-sm">
+
+    ${header}
+
+    <main class="flex-1 container mx-auto px-4 py-6">
+        <h1 class="text-red-700 text-center text-xl font-semibold mb-4">Blood Donor History</h1>
+
+        <div class="mb-4">
+            <input id="searchInput" type="text" placeholder="Search Donors" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400">
+        </div>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-white shadow-md rounded-md">
+    <thead class="bg-red-600 text-white sticky top-0">
+      <tr>
+        <th class="px-4 py-2 text-left">Name</th>
+        <th class="px-4 py-2 text-left">Village</th>
+        <th class="px-4 py-2 text-left">Tehsil</th>
+        <th class="px-4 py-2 text-left">Blood</th>
+        <th class="px-4 py-2 text-left">Contact</th>
+        <th class="px-4 py-2 text-left">Date</th>
+      </tr>
+    </thead>
+    <tbody id="donorTableBody">
+      ${card}
+    </tbody>
+  </table>
+</div>
+    </main>
+
+    <footer class="bg-gray-200 text-center text-gray-700 text-sm p-4">
+        Blood Donor Finder ek platform hai jo blood donors aur patients ko jodne me madad karta hai. Iska uddeshya blood ki availability badhakar jeevan bachana hai. Humari website par aap apna account bana kar donor list me jud sakte hain aur zaruratmandon ki madad kar sakte hain.
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function() {
+            const filter = searchInput.value.toLowerCase();
+            const rows = document.querySelectorAll('#donorTableBody tr');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
                 }
-            </style>
-        </head>
-        <body>
-            <h1>Blood Donor History</h1>
+            });
+        });
+    </script>
 
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search donors..." onkeyup="searchDonors()">
-            </div>
-
-            <div class="donor-container">
-                <table class="donor-table">
-                    <thead>
-                         <tr>
-                            <th>Name</th>
-                            <th>Village</th>
-                            <th>Tehsil</th>
-                            <th>Blood</th>
-                            <th>Contact</th>
-                           <th>Date</th>
-
-                        </tr>
-                    </thead>
-                    <tbody id="donorTableBody">
-                        <!-- Donor data will be inserted here by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-
-  
-                            
-               
-        </body>
-        </html>
-         `     
+</body>
+</html>` 
+        res.send(html)
     }
 })
 
-function add(n,p){
-    const newaccount = new account({
-        contact: n,
-        password: p,
-    })
-    newaccount.save()
-}
+app.get('/signup', async function(req,res){
+    const {contact, password} = req.query
+  
+    const singup =new account({
+        "contact": contact,
+       " password": password,
+    }) 
+
+   const isuser = await account.find({'contact': contact, 'password': password})
+
+    if(isuser){
+        return res.send (`<script> alert("you are alrady register")
+        window.location.href = "/profile"; // Redirect back to form page
+              </script>`)
+    }else{
+        await singup.save()
+        res.send (`<script> alert("you are register") window.location.href = "/profile"; // Redirect back to form page</script>`)
+    }
+ })
 
 
+app.get('/allfuture', function(req,res){
+    res.sendFile(path.join(__dirname, 'allfuture.html'))
+})
 
 // Start the server
 app.listen(8080, function() {
