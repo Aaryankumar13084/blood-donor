@@ -102,16 +102,7 @@ app.get('/find',async function(req,res){
     }
 
     res.send(`
- <link rel="stylesheet" href="style.css" />
-
-    <header class="bg-red-600 backdrop-blur-sm py-3 text-center border-b">
-        <nav class="space-x-6">
-            <a href="/" class="text-white no-underline">Home</a>
-            <a href="/findDonor" class="text-white no-underline">Blood Donor</a>
-            <a href="/register" class="text-white no-underline font-semibold">Register as Donor</a>
-            <a href="/allfuture" class="text-white no-underline">More</a>
-        </nav>
-    </header>
+${header}
 
         <div id="form2">
     <div class="card" id="find"">
