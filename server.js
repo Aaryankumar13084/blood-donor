@@ -332,26 +332,32 @@ app.get('/login', async function(req,res){
     }
 })
 
-app.get('/signup', async function(req,res){
-    const {contact, password} = req.query
-  
-    const singup =new account({
-        "contact": contact,
-       " password": password,
-    }) 
+app.get('/signup', async function(req, res) {
+    const { contact, password } = req.query;
 
-   const isuser = await account.find({'contact': contact, 'password': password})
+    // Check if user already exists (based only on contact)
+    const isuser = await account.findOne({ contact: contact });
 
-    if(!isuser){
-        await singup.save()
-        res.send (`<script> alert("you are register") window.location.href = "/profile"; // Redirect back to form page</script>`)
-    }else{
-       return res.send (`<script> alert("you are alrady register")
-        window.location.href = "/profile"; // Redirect back to form page
-              </script>`) 
+    if (!isuser) {
+        // Save new user
+        const signup = new account({
+            contact: contact,
+            password: password
+        });
+
+        await signup.save();
+
+        res.send(`<script>
+            alert("You are registered");
+            window.location.href = "/profile";
+        </script>`);
+    } else {
+        res.send(`<script>
+            alert("You are already registered");
+            window.location.href = "/profile";
+        </script>`);
     }
- })
-
+});
 
 app.get('/allfuture', function(req,res){
     res.sendFile(path.join(__dirname, 'allfuture.html'))
