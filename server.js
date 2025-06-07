@@ -342,13 +342,13 @@ app.get('/signup', async function(req,res){
 
    const isuser = await account.find({'contact': contact, 'password': password})
 
-    if(isuser){
-        return res.send (`<script> alert("you are alrady register")
-        window.location.href = "/profile"; // Redirect back to form page
-              </script>`)
-    }else{
+    if(!isuser){
         await singup.save()
         res.send (`<script> alert("you are register") window.location.href = "/profile"; // Redirect back to form page</script>`)
+    }else{
+       return res.send (`<script> alert("you are alrady register")
+        window.location.href = "/profile"; // Redirect back to form page
+              </script>`) 
     }
  })
 
