@@ -11,6 +11,9 @@ Blood Donor Finder is a web-based platform that connects blood donors with recip
 - Updated all HTML pages with responsive design
 - Server runs on port 5000 for Replit environment
 - Configured deployment for autoscale
+- Added 480px and 360px breakpoints for better mobile UI on small screens
+- Made hamburger menu accessible with button element, aria attributes and keyboard support (Escape key)
+- Improved form, button and content layout for mobile devices
 
 ## User Preferences
 
