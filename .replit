@@ -1,4 +1,4 @@
-modules = ["web", "nodejs-20"]
+modules = ["web", "nodejs-18"]
 run = "npm run dev"
 
 [nix]
@@ -10,3 +10,6 @@ run = ["sh", "-c", "npm run dev"]
 [[ports]]
 localPort = 8080
 externalPort = 80
+
+[agent]
+expertMode = true
