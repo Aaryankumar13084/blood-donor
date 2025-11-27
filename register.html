@@ -6,7 +6,6 @@
     <title>Register as Blood Donor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Background image styling */
         body {
             background-image: url('https://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png');
             background-size: cover;
@@ -15,19 +14,17 @@
             background-repeat: no-repeat;
         }
         
-        /* Form container with semi-transparent background */
         .form-container {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(5px);
         }
         
-        /* Preserve original input styles */
         .original-input input, 
         .original-input select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 16px;
             background-color: #f9f9f9;
         }
@@ -37,7 +34,74 @@
             font-weight: 500;
             color: #555;
         }
-        
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgb(220, 38, 38);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 10px 0;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+        }
     </style>
     <script>
         function updateInput() {
@@ -46,26 +110,47 @@
                 document.getElementById('whatsapp-no2').value = contact;
             }
         }
+
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks && !hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
     </script>
 </head>
 <body class="min-h-screen">
-    <!-- Simple Header with semi-transparent background -->
-    <header class="bg-red-600 backdrop-blur-sm py-3 text-center border-b">
-        <nav class="space-x-6">
-            <a href="/" class="text-white no-underline">Home</a>
-            <a href="/findDonor" class="text-white no-underline">Blood Donor</a>
-            <a href="/register" class="text-white no-underline font-semibold">Register as Donor</a>
-            <a href="/allfuture" class="text-white no-underline">More</a>
-        </nav>
+    <header class="bg-red-600 py-3 px-4 border-b relative">
+        <div class="flex items-center justify-between max-w-6xl mx-auto">
+            <span class="text-white font-bold text-lg">Blood Donor</span>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="/" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Home</a>
+                <a href="/finddonor" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Blood Donor</a>
+                <a href="/register" class="text-white no-underline font-semibold hover:bg-white/20 px-3 py-2 rounded">Register as Donor</a>
+                <a href="/allfuture" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">More</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Registration Form -->
-    <main class="container mx-auto px-4 py-8">
-        <div class="max-w-md mx-auto form-container p-6 rounded-lg shadow-lg">
+    <main class="container mx-auto px-4 py-6">
+        <div class="max-w-md mx-auto form-container p-6 rounded-xl shadow-lg">
             <h1 class="text-2xl font-semibold text-center mb-6 text-red-700">Register as Donor</h1>
             
-            <form action="/registerdonor" method="get" class="space-y-5">
-                <!-- Tehsil Selection -->
+            <form action="/registerdonor" method="get" class="space-y-4">
                 <div class="original-input">
                     <label for="tehsil">Select Tehsil:</label>
                     <select id="tehsil" name="tehsil" required>
@@ -78,7 +163,6 @@
                     </select>
                 </div>
 
-                <!-- Blood Group Selection -->
                 <div class="original-input">
                     <label for="blood-group2">Select blood group:</label>
                     <select id="blood-group2" name="bloodgroupregister" required>
@@ -94,54 +178,46 @@
                     </select>
                 </div>
 
-                <!-- Village -->
                 <div class="original-input">
                     <label for="Village">Village:</label>
                     <input type="text" id="Village" placeholder="Enter Your Village" name="village" required>
                 </div>
 
-                <!-- Name -->
                 <div class="original-input">
                     <label for="name2">Name:</label>
                     <input type="text" id="name2" placeholder="Your Name" name="name" required>
                 </div>
 
-                <!-- Contact Number -->
                 <div class="original-input">
                     <label for="contact2">Contact Number:</label>
                     <input type="tel" id="contact2" placeholder="10-digit mobile number" name="contact" minlength="10" maxlength="10" required>
                 </div>
 
-                <!-- WhatsApp Number -->
                 <div class="original-input">
-                    <label style="display: inline; font:20px;"for="whatsapp-no2">WhatsApp Number: </label>
-                   <label style="display:inline;" for="same-as-contact" class="text-sm text-gray-600">Same as above</label>
-                        <input style="width:20px; padding:4px;" type="checkbox" id="same-as-contact" onclick="updateInput()" class="">
-                        
-                   
-
-                    <input type="tel" id="whatsapp-no2" placeholder="10-digit WhatsApp number" name="whatsappno" minlength="10" maxlength="10" required>
+                    <label for="whatsapp-no2" class="inline">WhatsApp Number: </label>
+                    <span class="text-sm text-gray-600 ml-2">
+                        <input type="checkbox" id="same-as-contact" onclick="updateInput()" class="w-4 h-4 align-middle">
+                        <label for="same-as-contact" class="inline text-sm">Same as above</label>
+                    </span>
+                    <input type="tel" id="whatsapp-no2" placeholder="10-digit WhatsApp number" name="whatsappno" minlength="10" maxlength="10" required class="mt-2">
                 </div>
 
-                <!-- Password -->
                 <div class="original-input">
                     <label for="password">Password:</label>
                     <input type="password" id="password" placeholder="6-10 characters" name="password" minlength="6" maxlength="10" required>
                 </div>
 
-                <!-- Form Buttons -->
                 <div class="flex flex-col space-y-3 pt-2">
-                    <button type="submit" class="w-full bg-red-600 hover:bg-green-700 text-white py-2 px-4 rounded-md transition-colors duration-200">
+                    <button type="submit" class="w-full bg-red-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg transition-colors duration-200 font-medium">
                         Register Me
                     </button>
-                    <a href="/" class="w-full bg-gray-600 hover:bg-black text-white py-2 px-4 rounded-md transition-colors duration-200 text-center">
+                    <a href="/" class="w-full bg-gray-600 hover:bg-black text-white py-3 px-4 rounded-lg transition-colors duration-200 text-center font-medium">
                         Back
                     </a>
                 </div>
             </form>
 
-            <!-- Footer Note -->
-            <div class="mt-8 text-center text-gray-700 text-sm">
+            <div class="mt-6 text-center text-gray-700 text-sm">
                 <p class="font-medium">Saharanpur Blood Donors</p>
                 <p class="mt-1">Thank you for registering as a life saver</p>
             </div>

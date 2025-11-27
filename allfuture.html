@@ -1,82 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Blood Donor Website - Main Page with Navigation Cards</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <title>Blood Donor Website - Main Page with Navigation Cards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('https://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgb(220, 38, 38);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 10px 0;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks && !hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="min-h-screen font-sans">
 
-  <style>
-    body {
-        background-image: url('https://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-    }
+    <header class="bg-red-600 py-3 px-4 border-b relative">
+        <div class="flex items-center justify-between max-w-6xl mx-auto">
+            <span class="text-white font-bold text-lg">Blood Donor</span>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="/" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Home</a>
+                <a href="/finddonor" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Blood Donor</a>
+                <a href="/register" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Register as Donor</a>
+                <a href="/allfuture" class="text-white no-underline font-semibold hover:bg-white/20 px-3 py-2 rounded">More</a>
+            </nav>
+        </div>
+    </header>
 
-  </style>
+    <main class="container mx-auto px-4 py-8">
+        <div class="card-grid">
+            <a href="/" class="block bg-white/95 backdrop-blur p-6 rounded-xl shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h2 class="text-lg font-semibold text-red-700 mb-2">Home</h2>
+                <p class="text-gray-600">Welcome to Blood Donor Finder! Connecting donors and patients.</p>
+            </a>
 
-  <header class="bg-red-600 backdrop-blur-sm py-3 text-center border-b">
-      <nav class="space-x-6">
-          <a href="/" class="text-white no-underline">Home</a>
-          <a href="/findDonor" class="text-white no-underline">Blood Donor</a>
-          <a href="/register" class="text-white no-underline font-semibold">Register as Donor</a>
-          <a href="/allfuture" class="text-white no-underline">More</a>
-      </nav>
-  </header>
+            <a href="/register" class="block bg-white/95 backdrop-blur p-6 rounded-xl shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h2 class="text-lg font-semibold text-red-700 mb-2">Blood Donate</h2>
+                <p class="text-gray-600">Register as a donor and save lives.</p>
+            </a>
 
-  <main class="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-    
-    <!-- Home Card -->
-    <a href="/" class="block bg-white p-6 rounded shadow hover:shadow-lg transition hover:bg-red-50">
-      <h2 class="text-lg font-semibold text-red-700 mb-2">Home</h2>
-      <p>Welcome to Blood Donor Finder! Connecting donors and patients.</p>
-    </a>
+            <a href="/finddonor" class="block bg-white/95 backdrop-blur p-6 rounded-xl shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h2 class="text-lg font-semibold text-red-700 mb-2">Find Blood Donor</h2>
+                <p class="text-gray-600">Search for available blood donors near you.</p>
+            </a>
 
-    <!-- Blood Donate Card -->
-    <a href="/register" class="block bg-white p-6 rounded shadow hover:shadow-lg transition hover:bg-red-50">
-      <h2 class="text-lg font-semibold text-red-700 mb-2">Blood Donate</h2>
-      <p>Register as a donor and save lives.</p>
-    </a>
+            <a href="/profile" class="block bg-white/95 backdrop-blur p-6 rounded-xl shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h2 class="text-lg font-semibold text-red-700 mb-2">Profile</h2>
+                <p class="text-gray-600">Manage your donor profile and history.</p>
+            </a>
 
-    <!-- Find Donor Card -->
-    <a href="/findDonor" class="block bg-white p-6 rounded shadow hover:shadow-lg transition hover:bg-red-50">
-      <h2 class="text-lg font-semibold text-red-700 mb-2">Find Blood Donor</h2>
-      <p>Search for available blood donors near you.</p>
-    </a>
+            <a href="/about" class="block bg-white/95 backdrop-blur p-6 rounded-xl shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h2 class="text-lg font-semibold text-red-700 mb-2">About</h2>
+                <p class="text-gray-600">Learn more about Blood Donor Finder.</p>
+            </a>
 
-    <!-- Profile Card -->
-    <a href="/profile" class="block bg-white p-6 rounded shadow hover:shadow-lg transition hover:bg-red-50">
-      <h2 class="text-lg font-semibold text-red-700 mb-2">Profile</h2>
-      <p>Manage your donor profile and history.</p>
-    </a>
+            <a href="/profile" class="block bg-white/95 backdrop-blur p-6 rounded-xl shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h2 class="text-lg font-semibold text-red-700 mb-2">Signup</h2>
+                <p class="text-gray-600">Create your donor account and join us.</p>
+            </a>
 
-    <!-- About Card -->
-    <a href="/about" class="block bg-white p-6 rounded shadow hover:shadow-lg transition hover:bg-red-50">
-      <h2 class="text-lg font-semibold text-red-700 mb-2">About</h2>
-      <p>Learn more about Blood Donor Finder.</p>
-    </a>
+            <a href="/profile" class="block bg-white/95 backdrop-blur p-6 rounded-xl shadow-lg hover:shadow-xl transition hover:bg-red-50">
+                <h2 class="text-lg font-semibold text-red-700 mb-2">Login</h2>
+                <p class="text-gray-600">Access your account and donation history.</p>
+            </a>
+        </div>
+    </main>
 
-    <!-- Signup Card -->
-    <a href="/profile" class="block bg-white p-6 rounded shadow hover:shadow-lg transition hover:bg-red-50">
-      <h2 class="text-lg font-semibold text-red-700 mb-2">Signup</h2>
-      <p>Create your donor account and join us.</p>
-    </a>
-
-    <!-- Login Card -->
-    <a href="/profile" class="block bg-white p-6 rounded shadow hover:shadow-lg transition hover:bg-red-50">
-      <h2 class="text-lg font-semibold text-red-700 mb-2">Login</h2>
-      <p>Access your account and donation history.</p>
-    </a>
-
-  </main>
-
-  <footer class="bg-gray-200 text-center p-4 text-sm text-gray-700">
-    © 2025 Blood Donor Finder. All rights reserved.
-  </footer>
+    <footer class="bg-gray-200/90 backdrop-blur text-center p-4 text-sm text-gray-700 mt-8">
+        2025 Blood Donor Finder. All rights reserved.
+    </footer>
 
 </body>
 </html>

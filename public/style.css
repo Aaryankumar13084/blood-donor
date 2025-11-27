@@ -1,79 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
 br {
     margin-top: 20px;
+}
+
+body {
+    background: url("https://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
 }
 
 button:hover {
     background-color: green;
 }
+
 input {
-    padding: 6px;
+    padding: 12px;
     border-radius: 6px;
     background: rgb(193, 195, 199);
     width: 100%;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid #ddd;
 }
 
 select {
-    padding: 6px;
+    padding: 12px;
     border-radius: 6px;
     background: rgb(193, 195, 199);
     width: 100%;
-}
-
-.main-header a {
-    color: white;
+    font-size: 16px;
+    border: 1px solid #ddd;
 }
 
 label {
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
 }
 
 .main-header {
     background: rgb(235, 9, 51);
-    padding: 25px 0; /* Adjusted for responsiveness */
+    padding: 15px 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-height:5px;
+    justify-content: space-between;
+    position: relative;
+    flex-wrap: wrap;
 }
 
-body {
-    background: url("https://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png");
+.main-header a {
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    border-radius: 4px;
 }
 
+.main-header a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-links {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 3px 0;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgb(235, 9, 51);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 10px 0;
+        z-index: 1000;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 12px 20px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .main-header {
+        padding: 12px 15px;
+    }
+}
 
 .blood-div {
-    cursor: pointer; /* Corrected */
-    margin-top: 60px;
+    cursor: pointer;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 15px;
 }
 
 .home a {
-    height: 30px;
-    width: 60%;
-    padding: 10px;
-    max-width: 500px;
-    border-radius: 99px;
+    height: auto;
+    min-height: 50px;
+    width: 90%;
+    max-width: 400px;
+    padding: 15px 20px;
+    border-radius: 50px;
     background: red;
     display: flex;
-    font-size: 20px;
+    font-size: 18px;
     justify-content: center;
     align-items: center;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+}
+
+.need-blood {
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .register-form {
     max-width: 400px;
+    width: 90%;
     border: 2px solid black;
     border-radius: 10px;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .form {
@@ -81,20 +199,23 @@ body {
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin-top: 120px;
-    height: 50vh;
+    margin-top: 80px;
+    min-height: 50vh;
+    padding: 20px;
 }
 
 .form .input {
-    margin: 10px;
+    margin: 10px 0;
 }
 
 .form-div-2 {
     max-width: 400px;
+    width: 90%;
     border: 2px solid black;
     border-radius: 10px;
-    padding: 5px;
+    padding: 15px;
     background: lightgrey;
+    margin: 0 auto;
 }
 
 .main-form {
@@ -102,11 +223,12 @@ body {
     width: 100%;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .main-form .input2 {
-    margin: 10px;
+    margin: 10px 0;
 }
 
 .card {
@@ -114,24 +236,41 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 .main {
     border: 3px solid gray;
-    border-radius: 6px;
+    border-radius: 10px;
     background: lightgray;
     display: flex;
-    width: 320px;
-    margin: 15px;
-    padding: 10px 0px 10px 5px;
+    flex-direction: row;
+    width: 100%;
+    max-width: 350px;
+    margin: 15px auto;
+    padding: 15px;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 400px) {
+    .main {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 }
 
 .user-detail {
-    padding: 2px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-width: 0;
 }
-
 
 #link {
     display: flex;
@@ -140,9 +279,11 @@ body {
 
 .registerform {
     display: flex;
-    width: 80%;
+    width: 90%;
+    max-width: 400px;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 
 .card p {
@@ -150,19 +291,21 @@ body {
     display: flex;
     justify-content: center;
     font-size: 15px;
+    padding: 0 10px;
 }
 
 .user-detail h2 {
     display: flex;
-    padding: 2px;
-    font-size: 15px;
+    padding: 3px 0;
+    font-size: 14px;
     color: black;
+    word-break: break-word;
 }
 
 h4 {
     display: flex;
     padding: 2px;
-    font-size: 10px;
+    font-size: 11px;
     color: black;
 }
 
@@ -171,59 +314,67 @@ h4 {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 5px;
 }
 
 .call img {
-    margin: 10px 10px 10px 0px;
+    margin: 5px;
+    width: 45px;
+    height: 45px;
 }
 
 #or {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 40px;
+    margin: 30px;
 }
 
 #or2 h1 {
     color: red;
+    font-size: 24px;
 }
 
 #register {
-    cursor: pointer; /* Corrected */
-    margin-top: 40px;
+    cursor: pointer;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 15px;
 }
 
 #register2 {
-    width: 60%;
-    height: 30px;
-    padding: 15px;
-    max-width: 500px;
-    border-radius: 99px;
+    width: 90%;
+    max-width: 400px;
+    min-height: 50px;
+    padding: 15px 20px;
+    border-radius: 50px;
     background: red;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Register submit */
+#register2:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+}
+
 .registerform2 {
-    border: 5px solid black;
+    border: 3px solid #333;
     color: black;
-    background: lightgray;
+    background: rgba(255, 255, 255, 0.95);
     display: flex;
     flex-direction: column;
-    width: 400px;
-    margin: 15px;
-    padding: 10px;
-    border-radius: 20px;
-}
-
-#link {
-    display: flex;
-    justify-content: center;
+    width: 90%;
+    max-width: 400px;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .registerform2 .p {
@@ -234,7 +385,8 @@ h4 {
     color: white;
     border-radius: 99px;
     justify-content: center;
-    padding: 0 10px;
+    padding: 5px 15px;
+    font-size: 14px;
 }
 
 p {
@@ -244,35 +396,39 @@ p {
 
 .registerform2 h2 {
     display: flex;
-    padding: 6px;
+    padding: 8px 0;
     font-size: 15px;
 }
 
 .bottom-background {
-    padding: 10px 10px 0px 10px;
-    margin-top: 5%;
+    padding: 10px;
+    margin-top: 30px;
     background: url("https://i.ibb.co/mJXJGx2/blood-1.png") no-repeat bottom center;
+    background-size: contain;
     width: 100%;
+    max-width: 350px;
+    height: 300px;
 }
 
 @media (max-width: 400px) {
     .bottom-background {
         width: 100%;
+        height: 250px;
     }
 }
 
-@media (min-width: 100px) {
+@media (min-width: 401px) {
     .bottom-background {
-        width: 400px;
-        height: 400px;
+        width: 350px;
+        height: 350px;
     }
 }
 
 .main-background {
     display: flex;
     justify-content: center;
-    width: auto;
-    max-width: 1200px; /* Optional: limit max width */
+    width: 100%;
+    padding: 0 15px;
 }
 
 h1, h2, h3, h4, h5, h6, a {
@@ -281,15 +437,69 @@ h1, h2, h3, h4, h5, h6, a {
 
 .registerform2 img {
     max-width: 100%;
-    height: auto; /* Ensure the image retains its aspect ratio */
+    height: auto;
 }
 
 .registerform2, .card {
-    width: 90%; /* Added responsiveness */
+    width: 90%;
+    max-width: 400px;
 }
 
 @media (max-width: 768px) {
     .registerform2, .card {
-        width: 100%; /* Adjust for smaller screens */
+        width: 95%;
+    }
+}
+
+.find-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+}
+
+.back {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.back a {
+    text-align: center;
+    padding: 10px 25px;
+    background: red;
+    border: 2px solid darkred;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.back a:hover {
+    background: darkred;
+}
+
+#form2 {
+    padding: 10px;
+    min-height: 100vh;
+}
+
+@media (max-width: 480px) {
+    .need-blood {
+        font-size: 16px;
+    }
+    
+    #or2 h1 {
+        font-size: 20px;
+    }
+    
+    .user-detail h2 {
+        font-size: 13px;
+    }
+    
+    .call img {
+        width: 40px;
+        height: 40px;
     }
 }

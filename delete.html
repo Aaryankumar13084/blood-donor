@@ -1,88 +1,151 @@
 <!doctype html>
 <html lang="en">
-
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blood Donor Finder Application</title>
-    <link rel="stylesheet" href="style.css"
-/>
-</head>
-  <div class="main-header">
-  <a href="/">Home</a>
-  <a href="/findDonor">Blood Donor</a>
-  <a href="/register">Register as Donor</a>
-  <a href="/allfuture"> More </a>
-  </div>
+    <title>Delete Request - Blood Donor Finder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('https://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
 
-  <style>
-      .Form {
-        background: url("hhttps://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png");
-        font-family: Arial, sans-serif;
-        display: flex;
-        height: 80vh;
-        align-items: center;
-        justify-content: center;
-      }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
 
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
 
-      .Form-container {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        width: 300px;
-      }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
 
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
 
-      .Form-container h2 {
-        text-align: center;
-        margin-bottom: 20px;
-      }
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
 
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
 
-      .Form-container button {
-        width: 100%;
-        padding: 10px;
-        background-color: #ff4d4d;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-weight: bold;
-        cursor: pointer;
-      }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgb(220, 38, 38);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 10px 0;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
 
+            .nav-links.active {
+                display: flex;
+            }
 
-     button:hover {
-        background-color: green;
-      }
-    body {
-        background: url("https://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png");
-    }
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
 
-
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+        }
     </style>
-<body>  <div class="Form">
-    <form action="/deletereq" method="get" class="Form-container">
-      <h2>Cancel My Requeste</h2>
-      <input style="
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-        background-color: white;"
-        type="tel" placeholder="Mobile Number" name="contact" required />
-      <input style="
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius:   5px; background-color: white;"type="password" placeholder="Password" name="password" />
-      <button type="submit">Delete</button>
-    </form>
-  </div>
-  </body>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-red-600 py-3 px-4 border-b relative">
+        <div class="flex items-center justify-between max-w-6xl mx-auto">
+            <span class="text-white font-bold text-lg">Blood Donor</span>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="/" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Home</a>
+                <a href="/finddonor" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Blood Donor</a>
+                <a href="/register" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Register as Donor</a>
+                <a href="/allfuture" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">More</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-1 flex items-center justify-center px-4 py-8">
+        <div class="bg-white/95 backdrop-blur rounded-xl shadow-lg p-6 w-full max-w-sm">
+            <form action="/deletereq" method="get" class="space-y-4">
+                <h2 class="text-xl font-bold text-center text-red-600 mb-4">Cancel My Request</h2>
+                <p class="text-sm text-gray-600 text-center mb-4">Enter your details to remove your registration</p>
+                <input 
+                    type="tel" 
+                    placeholder="Mobile Number" 
+                    name="contact" 
+                    required 
+                    class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 text-base"
+                />
+                <input 
+                    type="password" 
+                    placeholder="Password" 
+                    name="password" 
+                    required
+                    class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 text-base"
+                />
+                <button type="submit" class="w-full py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-medium">
+                    Delete My Registration
+                </button>
+                <a href="/" class="block w-full py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-medium text-center">
+                    Back to Home
+                </a>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks && !hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
 </html>

@@ -1,73 +1,175 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About - Blood Donor Finder</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Blood Donor Finder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('https://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png');
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgb(220, 38, 38);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 10px 0;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
 </head>
-<body class="min-h-screen flex flex-col" style="background-image: url('https://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png'); font-family: 'Noto Sans Devanagari', sans-serif; background-size: cover; background-repeat: no-repeat; background-position: center;">
+<body class="min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="bg-red-600 backdrop-blur-sm py-3 text-center border-b">
-    <nav class="space-x-6">
-      <a href="/" class="text-white no-underline">Home</a>
-      <a href="/findDonor" class="text-white no-underline">Blood Donor</a>
-      <a href="/register" class="text-white no-underline font-semibold">Register as Donor</a>
-      <a href="/allfuture" class="text-white no-underline">More</a>
-    </nav>
-  </header>
+    <header class="bg-red-600 py-3 px-4 border-b relative">
+        <div class="flex items-center justify-between max-w-6xl mx-auto">
+            <span class="text-white font-bold text-lg">Blood Donor</span>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="/" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Home</a>
+                <a href="/finddonor" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Blood Donor</a>
+                <a href="/register" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Register as Donor</a>
+                <a href="/allfuture" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">More</a>
+            </nav>
+        </div>
+    </header>
 
-  <!-- Content + Form -->
-  <main class="flex-1 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="bg-white bg-opacity-90 rounded-lg shadow-lg p-6 w-full max-w-sm">
-      <div class="flex justify-around mb-4 cursor-pointer">
-        <div id="loginTab" class="border-b-2 border-blue-500 font-bold" onclick="showForm('login')">Login</div>
-        <div id="signupTab" class="border-b-2 border-transparent" onclick="showForm('signup')">Signup</div>
-      </div>
+    <main class="flex-1 flex flex-col items-center justify-center py-8 px-4">
+        <div class="bg-white/95 backdrop-blur rounded-xl shadow-lg p-6 w-full max-w-sm">
+            <div class="flex justify-around mb-4 cursor-pointer border-b">
+                <div id="loginTab" class="pb-2 px-4 border-b-2 border-red-500 font-bold text-red-600" onclick="showForm('login')">Login</div>
+                <div id="signupTab" class="pb-2 px-4 border-b-2 border-transparent text-gray-500" onclick="showForm('signup')">Signup</div>
+            </div>
 
-      <div id="loginForm" class="block">
-        <form action="/login" method="get" class="space-y-3">
-          <h3 class="text-lg font-semibold text-center">Login</h3>
-          <input name="contact" type="tel" placeholder="Mobile Number" required  class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-          <input name="password" type="password" placeholder="Password" required  class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-          <button type="submit" class="w-full py-2 bg-red-600 text-white rounded hover:bg-green-600">Login</button>
-        </form>
-      </div>
+            <div id="loginForm" class="block">
+                <form action="/login" method="get" class="space-y-4">
+                    <h3 class="text-lg font-semibold text-center text-gray-800">Login to Your Account</h3>
+                    <input name="contact" type="tel" placeholder="Mobile Number" required class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 text-base">
+                    <input name="password" type="password" placeholder="Password" required class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 text-base">
+                    <button type="submit" class="w-full py-3 bg-red-600 text-white rounded-lg hover:bg-green-600 transition font-medium">Login</button>
+                </form>
+            </div>
 
-      <div id="signupForm" class="hidden">
-        <form action="/signup" method="get" class="space-y-3">
-          <h3 class="text-lg font-semibold text-center">Signup</h3>
-          <input name="contact" type="tel" placeholder="Mobile Number" required class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-          <input name="password" type="password" placeholder="Password" required  class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-          <button type="submit" class="w-full py-2 bg-red-600 text-white rounded hover:bg-green-600">Signup</button>
-        </form>
-      </div>
-    </div>
-  </main>
+            <div id="signupForm" class="hidden">
+                <form action="/signup" method="get" class="space-y-4">
+                    <h3 class="text-lg font-semibold text-center text-gray-800">Create New Account</h3>
+                    <input name="contact" type="tel" placeholder="Mobile Number" required class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 text-base">
+                    <input name="password" type="password" placeholder="Password" required class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 text-base">
+                    <button type="submit" class="w-full py-3 bg-red-600 text-white rounded-lg hover:bg-green-600 transition font-medium">Signup</button>
+                </form>
+            </div>
+        </div>
+    </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-200 py-3 text-center text-sm text-gray-800">
-    Blood Donor Finder ek platform hai jo blood donors aur patients ko jodne me madad karta hai. Iska uddeshya blood ki availability badhakar jeevan bachana hai. Humari website par aap apna account bana kar donor list me jud sakte hain aur zaruratmandon ki madad kar sakte hain.
-  </footer>
+    <footer class="bg-gray-200/90 backdrop-blur py-4 px-4 text-center text-sm text-gray-700">
+        Blood Donor Finder ek platform hai jo blood donors aur patients ko jodne me madad karta hai. Iska uddeshya blood ki availability badhakar jeevan bachana hai.
+    </footer>
 
-  <script>
-    function showForm(form) {
-      document.getElementById('loginTab').classList.remove('border-blue-500', 'font-bold');
-      document.getElementById('signupTab').classList.remove('border-blue-500', 'font-bold');
-      document.getElementById('loginForm').classList.add('hidden');
-      document.getElementById('signupForm').classList.add('hidden');
+    <script>
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
 
-      if (form === 'login') {
-        document.getElementById('loginTab').classList.add('border-blue-500', 'font-bold');
-        document.getElementById('loginForm').classList.remove('hidden');
-      } else {
-        document.getElementById('signupTab').classList.add('border-blue-500', 'font-bold');
-        document.getElementById('signupForm').classList.remove('hidden');
-      }
-    }
-  </script>
+        document.addEventListener('click', function(event) {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks && !hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        function showForm(form) {
+            document.getElementById('loginTab').classList.remove('border-red-500', 'font-bold', 'text-red-600');
+            document.getElementById('loginTab').classList.add('border-transparent', 'text-gray-500');
+            document.getElementById('signupTab').classList.remove('border-red-500', 'font-bold', 'text-red-600');
+            document.getElementById('signupTab').classList.add('border-transparent', 'text-gray-500');
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('signupForm').classList.add('hidden');
+
+            if (form === 'login') {
+                document.getElementById('loginTab').classList.add('border-red-500', 'font-bold', 'text-red-600');
+                document.getElementById('loginTab').classList.remove('border-transparent', 'text-gray-500');
+                document.getElementById('loginForm').classList.remove('hidden');
+            } else {
+                document.getElementById('signupTab').classList.add('border-red-500', 'font-bold', 'text-red-600');
+                document.getElementById('signupTab').classList.remove('border-transparent', 'text-gray-500');
+                document.getElementById('signupForm').classList.remove('hidden');
+            }
+        }
+    </script>
 
 </body>
 </html>

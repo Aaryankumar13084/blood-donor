@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="hi">
-
 <head> 
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-           /* Background image styling */
         body {
             background-image: url('https://i.ibb.co/1JTtKNFv/file-0000000011bc61f79c3937902e0a32aa.png');
             background-size: cover;
@@ -16,44 +14,110 @@
             background-attachment: fixed;
             background-repeat: no-repeat;
         }
-
         
         .content-box {
-            background-color: rgba(255, 255, 255, 0.92);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(4px);
         }
-        
-        .main-header {
-            background-color: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(4px);
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgb(220, 38, 38);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 10px 0;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
         }
     </style>
 </head>
-
 <body class="min-h-screen">
-    <header class="bg-red-600 backdrop-blur-sm py-3 text-center border-b">
-        <nav class="space-x-6">
-            <a href="/" class="text-white no-underline">Home</a>
-            <a href="/findDonor" class="text-white no-underline">Blood Donor</a>
-            <a href="/register" class="text-white no-underline font-semibold">Register as Donor</a>
-            <a href="/allfuture" class="text-white no-underline">More</a>
-        </nav>
+    <header class="bg-red-600 py-3 px-4 border-b relative">
+        <div class="flex items-center justify-between max-w-6xl mx-auto">
+            <span class="text-white font-bold text-lg">Blood Donor</span>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="/" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Home</a>
+                <a href="/finddonor" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Blood Donor</a>
+                <a href="/register" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Register as Donor</a>
+                <a href="/allfuture" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">More</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- About Section -->
-    <main class="container mx-auto px-4 py-8">
-        <div class="max-w-3xl mx-auto content-box p-8 rounded-xl shadow-lg">
-            <!-- Profile Header -->
+    <main class="container mx-auto px-4 py-6">
+        <div class="max-w-3xl mx-auto content-box p-6 md:p-8 rounded-xl shadow-lg">
             <div class="flex items-center mb-6">
                 <div class="bg-red-100 p-3 rounded-full mr-4">
                     <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                     </svg>
                 </div>
-                <h1 class="text-2xl font-bold text-gray-800">हिमांशु कश्यप</h1>
+                <h1 class="text-xl md:text-2xl font-bold text-gray-800">हिमांशु कश्यप</h1>
             </div>
 
-            <!-- Content -->
             <div class="space-y-4 text-gray-700 leading-relaxed">
                 <p class="text-lg font-medium text-red-600">कक्षा 11वीं, एस.ए.एम. इंटर कॉलेज</p>
 
@@ -80,7 +144,7 @@
                         <p class="font-medium">TECHNICAL DETAILS:</p>
                         <ul class="list-disc pl-6">
                             <li>Frontend: HTML, CSS, JavaScript</li>
-                            <li>Backend: Nodejs,Express</li>
+                            <li>Backend: Nodejs, Express</li>
                             <li>Database: Mongodb</li>
                             <li>Responsive Design</li>
                             <li>User-friendly Interface</li>
@@ -89,7 +153,6 @@
                 </div>
             </div>
 
-            <!-- Footer Note -->
             <div class="mt-8 pt-6 border-t border-gray-200 text-center text-sm text-gray-600">
                 <p>सहारनपुर रक्तदाता नेटवर्क</p>
                 <p class="mt-1">जीवन बचाने की दिशा में एक कदम</p>
@@ -97,6 +160,23 @@
         </div>
     </main>
 
+    <script>
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks && !hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

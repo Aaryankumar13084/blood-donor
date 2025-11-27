@@ -27,31 +27,102 @@ const header = `
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blood Donor Finder Application</title>
     <link rel="stylesheet" href="style.css"/>
+    <style>
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgb(235, 9, 51);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 10px 0;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+        h2 { color: black; }
+    </style>
 </head>
 
 <body>
-<style>
-h2{
-color; white;
-}
-</style>
-        <div class="main-header">
-        <a href="/">Home</a>
-        <a href="/findDonor">Blood Donor</a>
-        <a href="/register">Register as Donor</a>
-        <a href="/profile"> About</a>
+    <div class="main-header">
+        <span class="logo" style="font-size: 18px; font-weight: bold; color: white;">Blood Donor</span>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/finddonor">Blood Donor</a>
+            <a href="/register">Register as Donor</a>
+            <a href="/allfuture">More</a>
+        </nav>
     </div>
 `
 
 const footer =`
+  <script>
+    function toggleMenu() {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    }
+    document.addEventListener('click', function(event) {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks && !hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
+    });
+  </script>
   <script src="script.js"></script>
-
 </body>
 </html>
 `
 // Serve index.html on root
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 

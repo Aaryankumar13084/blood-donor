@@ -5,15 +5,20 @@ run = "npm run dev"
 channel = "stable-25_05"
 
 [deployment]
-run = ["sh", "-c", "npm run dev"]
+run = ["node", "server.js"]
+deploymentTarget = "autoscale"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
 
 [[ports]]
 localPort = 8080
 externalPort = 80
 
 [[ports]]
-localPort = 5000
-externalPort = 80
+localPort = 46107
+externalPort = 3000
 
 [agent]
 expertMode = true
