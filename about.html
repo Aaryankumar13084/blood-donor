@@ -26,8 +26,6 @@
             cursor: pointer;
             padding: 10px;
             z-index: 1001;
-            background: transparent;
-            border: none;
         }
 
         .hamburger span {
@@ -89,68 +87,18 @@
                 border-bottom: none;
             }
         }
-        
-        @media (max-width: 480px) {
-            .content-box {
-                padding: 16px !important;
-            }
-            
-            h1 {
-                font-size: 1.1rem !important;
-            }
-            
-            h2 {
-                font-size: 1rem !important;
-            }
-            
-            p, li {
-                font-size: 14px !important;
-            }
-            
-            .bg-red-100 {
-                padding: 8px !important;
-            }
-            
-            .bg-red-100 svg {
-                width: 24px !important;
-                height: 24px !important;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .content-box {
-                padding: 12px !important;
-            }
-            
-            h1 {
-                font-size: 1rem !important;
-            }
-            
-            h2 {
-                font-size: 0.9rem !important;
-            }
-            
-            p, li {
-                font-size: 13px !important;
-                line-height: 1.5 !important;
-            }
-            
-            .bg-red-50, .bg-green-50 {
-                padding: 12px !important;
-            }
-        }
     </style>
 </head>
 <body class="min-h-screen">
     <header class="bg-red-600 py-3 px-4 border-b relative">
         <div class="flex items-center justify-between max-w-6xl mx-auto">
             <span class="text-white font-bold text-lg">Blood Donor</span>
-            <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+            <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
-            <nav class="nav-links" id="nav-links">
+            </div>
+            <nav class="nav-links">
                 <a href="/" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Home</a>
                 <a href="/finddonor" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Blood Donor</a>
                 <a href="/register" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Register as Donor</a>
@@ -216,10 +164,8 @@
         function toggleMenu() {
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
-            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
-            hamburger.setAttribute('aria-expanded', !isExpanded);
         }
 
         document.addEventListener('click', function(event) {
@@ -228,19 +174,6 @@
             if (hamburger && navLinks && !hamburger.contains(event.target) && !navLinks.contains(event.target)) {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
-            }
-        });
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const hamburger = document.querySelector('.hamburger');
-                const navLinks = document.querySelector('.nav-links');
-                if (hamburger && navLinks) {
-                    hamburger.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
-                }
             }
         });
     </script>

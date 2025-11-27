@@ -56,12 +56,12 @@
     <div class="main-content">
       <div class="main-header">
         <span class="logo">Blood Donor</span>
-        <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <div class="hamburger" onclick="toggleMenu()">
           <span></span>
           <span></span>
           <span></span>
-        </button>
-        <nav class="nav-links" id="nav-links">
+        </div>
+        <nav class="nav-links">
           <a href="/">Home</a>
           <a href="/finddonor">Blood Donor</a>
           <a href="/register">Register as Donor</a>
@@ -117,10 +117,8 @@
       function toggleMenu() {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
-        hamburger.setAttribute('aria-expanded', !isExpanded);
       }
 
       document.addEventListener('click', function(event) {
@@ -129,17 +127,6 @@
         if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
           hamburger.classList.remove('active');
           navLinks.classList.remove('active');
-          hamburger.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-          const hamburger = document.querySelector('.hamburger');
-          const navLinks = document.querySelector('.nav-links');
-          hamburger.classList.remove('active');
-          navLinks.classList.remove('active');
-          hamburger.setAttribute('aria-expanded', 'false');
         }
       });
     </script>

@@ -20,8 +20,6 @@
             cursor: pointer;
             padding: 10px;
             z-index: 1001;
-            background: transparent;
-            border: none;
         }
 
         .hamburger span {
@@ -89,66 +87,13 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
-        
-        @media (max-width: 480px) {
-            .card-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .card-grid a {
-                padding: 16px !important;
-            }
-            
-            .card-grid h2 {
-                font-size: 1rem !important;
-            }
-            
-            .card-grid p {
-                font-size: 13px !important;
-            }
-            
-            main {
-                padding: 16px !important;
-            }
-            
-            footer {
-                font-size: 12px !important;
-                padding: 12px !important;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .card-grid {
-                gap: 10px;
-            }
-            
-            .card-grid a {
-                padding: 12px !important;
-            }
-            
-            .card-grid h2 {
-                font-size: 0.9rem !important;
-                margin-bottom: 4px !important;
-            }
-            
-            .card-grid p {
-                font-size: 12px !important;
-            }
-            
-            main {
-                padding: 12px !important;
-            }
-        }
     </style>
     <script>
         function toggleMenu() {
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
-            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
-            hamburger.setAttribute('aria-expanded', !isExpanded);
         }
 
         document.addEventListener('click', function(event) {
@@ -157,19 +102,6 @@
             if (hamburger && navLinks && !hamburger.contains(event.target) && !navLinks.contains(event.target)) {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
-            }
-        });
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const hamburger = document.querySelector('.hamburger');
-                const navLinks = document.querySelector('.nav-links');
-                if (hamburger && navLinks) {
-                    hamburger.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
-                }
             }
         });
     </script>
@@ -179,12 +111,12 @@
     <header class="bg-red-600 py-3 px-4 border-b relative">
         <div class="flex items-center justify-between max-w-6xl mx-auto">
             <span class="text-white font-bold text-lg">Blood Donor</span>
-            <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+            <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
-            <nav class="nav-links" id="nav-links">
+            </div>
+            <nav class="nav-links">
                 <a href="/" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Home</a>
                 <a href="/finddonor" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Blood Donor</a>
                 <a href="/register" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Register as Donor</a>

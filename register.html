@@ -41,8 +41,6 @@
             cursor: pointer;
             padding: 10px;
             z-index: 1001;
-            background: transparent;
-            border: none;
         }
 
         .hamburger span {
@@ -104,58 +102,6 @@
                 border-bottom: none;
             }
         }
-        
-        @media (max-width: 480px) {
-            .form-container {
-                padding: 16px !important;
-                margin: 10px;
-            }
-            
-            h1 {
-                font-size: 1.25rem !important;
-            }
-            
-            .original-input input, 
-            .original-input select {
-                padding: 10px;
-                font-size: 14px;
-            }
-            
-            .original-input label {
-                font-size: 13px;
-            }
-            
-            button, a.block {
-                padding: 12px !important;
-                font-size: 14px !important;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .form-container {
-                padding: 12px !important;
-            }
-            
-            h1 {
-                font-size: 1.1rem !important;
-                margin-bottom: 16px !important;
-            }
-            
-            .original-input input, 
-            .original-input select {
-                padding: 8px;
-                font-size: 13px;
-            }
-            
-            .original-input label {
-                font-size: 12px;
-                margin-bottom: 5px;
-            }
-            
-            .space-y-4 > * + * {
-                margin-top: 12px !important;
-            }
-        }
     </style>
     <script>
         function updateInput() {
@@ -168,10 +114,8 @@
         function toggleMenu() {
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
-            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
-            hamburger.setAttribute('aria-expanded', !isExpanded);
         }
 
         document.addEventListener('click', function(event) {
@@ -180,19 +124,6 @@
             if (hamburger && navLinks && !hamburger.contains(event.target) && !navLinks.contains(event.target)) {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
-            }
-        });
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const hamburger = document.querySelector('.hamburger');
-                const navLinks = document.querySelector('.nav-links');
-                if (hamburger && navLinks) {
-                    hamburger.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
-                }
             }
         });
     </script>
@@ -201,12 +132,12 @@
     <header class="bg-red-600 py-3 px-4 border-b relative">
         <div class="flex items-center justify-between max-w-6xl mx-auto">
             <span class="text-white font-bold text-lg">Blood Donor</span>
-            <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+            <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
-            <nav class="nav-links" id="nav-links">
+            </div>
+            <nav class="nav-links">
                 <a href="/" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Home</a>
                 <a href="/finddonor" class="text-white no-underline hover:bg-white/20 px-3 py-2 rounded">Blood Donor</a>
                 <a href="/register" class="text-white no-underline font-semibold hover:bg-white/20 px-3 py-2 rounded">Register as Donor</a>
