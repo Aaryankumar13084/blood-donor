@@ -87,6 +87,57 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
+        
+        @media (max-width: 480px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .card-grid a {
+                padding: 16px !important;
+            }
+            
+            .card-grid h2 {
+                font-size: 1rem !important;
+            }
+            
+            .card-grid p {
+                font-size: 13px !important;
+            }
+            
+            main {
+                padding: 16px !important;
+            }
+            
+            footer {
+                font-size: 12px !important;
+                padding: 12px !important;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .card-grid {
+                gap: 10px;
+            }
+            
+            .card-grid a {
+                padding: 12px !important;
+            }
+            
+            .card-grid h2 {
+                font-size: 0.9rem !important;
+                margin-bottom: 4px !important;
+            }
+            
+            .card-grid p {
+                font-size: 12px !important;
+            }
+            
+            main {
+                padding: 12px !important;
+            }
+        }
     </style>
     <script>
         function toggleMenu() {

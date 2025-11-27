@@ -101,6 +101,50 @@
                 border-bottom: none;
             }
         }
+        
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 16px !important;
+                margin-top: 20px !important;
+            }
+            
+            h1 {
+                font-size: 1.25rem !important;
+            }
+            
+            .original-input select {
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .original-input label {
+                font-size: 13px;
+            }
+            
+            button {
+                padding: 12px !important;
+                font-size: 14px !important;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .form-container {
+                padding: 12px !important;
+            }
+            
+            h1 {
+                font-size: 1.1rem !important;
+            }
+            
+            .original-input select {
+                padding: 8px;
+                font-size: 13px;
+            }
+            
+            .original-input label {
+                font-size: 12px;
+            }
+        }
     </style>
     <script>
         function toggleMenu() {

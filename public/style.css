@@ -502,4 +502,78 @@ h1, h2, h3, h4, h5, h6, a {
         width: 40px;
         height: 40px;
     }
+    
+    .blood-div {
+        margin-top: 30px;
+    }
+    
+    .home a {
+        padding: 12px 15px;
+        min-height: 45px;
+    }
+    
+    #or {
+        margin: 20px;
+    }
+    
+    #register2 {
+        padding: 12px 15px;
+        min-height: 45px;
+    }
+    
+    .bottom-background {
+        margin-top: 20px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo {
+        font-size: 16px;
+    }
+    
+    .main-header {
+        padding: 10px 12px;
+    }
+    
+    .home a {
+        font-size: 15px;
+        padding: 10px 12px;
+    }
+    
+    #register2 a {
+        font-size: 15px;
+    }
+    
+    .need-blood {
+        font-size: 14px;
+    }
+    
+    #or2 h1 {
+        font-size: 18px;
+    }
+    
+    .bottom-background {
+        height: 180px;
+    }
+    
+    .registerform2 {
+        padding: 15px;
+    }
+    
+    .registerform2 h2 {
+        font-size: 13px;
+    }
+    
+    .main {
+        padding: 12px;
+    }
+    
+    .user-detail h2 {
+        font-size: 12px;
+    }
+    
+    h4 {
+        font-size: 10px;
+    }
 }

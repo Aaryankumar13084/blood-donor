@@ -87,6 +87,56 @@
                 border-bottom: none;
             }
         }
+        
+        @media (max-width: 480px) {
+            .content-box {
+                padding: 16px !important;
+            }
+            
+            h1 {
+                font-size: 1.1rem !important;
+            }
+            
+            h2 {
+                font-size: 1rem !important;
+            }
+            
+            p, li {
+                font-size: 14px !important;
+            }
+            
+            .bg-red-100 {
+                padding: 8px !important;
+            }
+            
+            .bg-red-100 svg {
+                width: 24px !important;
+                height: 24px !important;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .content-box {
+                padding: 12px !important;
+            }
+            
+            h1 {
+                font-size: 1rem !important;
+            }
+            
+            h2 {
+                font-size: 0.9rem !important;
+            }
+            
+            p, li {
+                font-size: 13px !important;
+                line-height: 1.5 !important;
+            }
+            
+            .bg-red-50, .bg-green-50 {
+                padding: 12px !important;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen">
