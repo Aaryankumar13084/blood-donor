@@ -1,7 +1,7 @@
 const express = require('express');
-const app = express();
 const path = require('path');
-const mongoose = require('mongoose')
+const app = express();
+const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://blood:blood1234@ac-dnwtbgo-shard-00-01.s0bwrss.mongodb.net:27017,ac-dnwtbgo-shard-00-00.s0bwrss.mongodb.net:27017,ac-dnwtbgo-shard-00-02.s0bwrss.mongodb.net:27017/blood-donor?ssl=true&authSource=admin&retryWrites=true&w=majority')
     .then(function () {
