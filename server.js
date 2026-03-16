@@ -3,13 +3,13 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb+srv://blood:blood1234@blood-donor.s0bwrss.mongodb.net/blood-donor?retryWrites=true&w=majority&appName=blood-donor')
-.then(function() {
-    console.log('connected');
-})
-.catch(function(err) {
-    console.error('connection error:', err);
-});
+mongoose.connect('mongodb://blood:blood1234@ac-dnwtbgo-shard-00-01.s0bwrss.mongodb.net:27017,ac-dnwtbgo-shard-00-00.s0bwrss.mongodb.net:27017,ac-dnwtbgo-shard-00-02.s0bwrss.mongodb.net:27017/blood-donor?ssl=true&authSource=admin&retryWrites=true&w=majority')
+    .then(function () {
+        console.log('connected');
+    })
+    .catch(function (err) {
+        console.error('connection error:', err);
+    });
 
 const donor = require('./module/module.js');
 const history = require('./module/history.js')
@@ -99,7 +99,7 @@ const header = `
     </div>
 `
 
-const footer =`
+const footer = `
   <script>
     function toggleMenu() {
         const hamburger = document.querySelector('.hamburger');
@@ -121,37 +121,37 @@ const footer =`
 </html>
 `
 // Serve index.html on root
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 
 
-app.get('/about', function(req,res){
+app.get('/about', function (req, res) {
     res.sendFile(path.join(__dirname, 'about.html'));
 })
 
-app.get('/finddonor', function(req,res){
+app.get('/finddonor', function (req, res) {
     res.sendFile(path.join(__dirname, 'finddonor.html'))
 })
 
-app.get('/find',async function(req,res){
-    const {tehsil,bloodgroup} = req.query
-    const filterdonor =  await donor.find({'tehsil': tehsil, 'bloodgroup': bloodgroup});
-    
+app.get('/find', async function (req, res) {
+    const { tehsil, bloodgroup } = req.query
+    const filterdonor = await donor.find({ 'tehsil': tehsil, 'bloodgroup': bloodgroup });
 
-    if(filterdonor.length === 0){
+
+    if (filterdonor.length === 0) {
 
         return res.send(`${header}<div style="height: 400px; display: flex; justify-content: center; align-items: center;"><p style="color: red; font-size: 30px;">Donor Not Found</p><div>${footer}`)
-      }
+    }
 
-    let card = "" 
+    let card = ""
 
-    for(let x = 0; x < filterdonor.length; x++){
+    for (let x = 0; x < filterdonor.length; x++) {
 
-        const {name, village,tehsil, bloodgroup, contact, Whatsapp}=filterdonor[x]
-   
-       card += ` <div class="main" style="position: relative;" >
+        const { name, village, tehsil, bloodgroup, contact, Whatsapp } = filterdonor[x]
+
+        card += ` <div class="main" style="position: relative;" >
             <div class="user-detail">
 
      <h2> Name: ${name} </h2>
@@ -169,7 +169,7 @@ app.get('/find',async function(req,res){
             bottom: 0; border-radius: 99px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV1ouiYq1xZbW7Pv61gy4Q1PdcZ-X_W3Y132O9Db_FIaGciVn0YZqPsKrZ&s=10"/></a>
         </div>
 
-   ` 
+   `
     }
 
     res.send(`
@@ -191,143 +191,143 @@ ${header}
 
 ${footer}  
   `)
-  }
+}
 )
 
-app.get('/delete', function(req,res){
-  res.sendFile(path.join(__dirname, 'delete.html'))  
+app.get('/delete', function (req, res) {
+    res.sendFile(path.join(__dirname, 'delete.html'))
 })
 
-app.get('/deletereq', async function(req,res){
-    const {contact, password} = req.query;
+app.get('/deletereq', async function (req, res) {
+    const { contact, password } = req.query;
     console.log("Received:", contact, password); // ← This prints: undefined undefined
-    const isdonor = await donor.find({'contact': contact , 'password': password});
+    const isdonor = await donor.find({ 'contact': contact, 'password': password });
     history.insertMany(isdonor)
     console.log("History:", history);
     console.log("Found:", isdonor);
 
-    if(isdonor.length === 0){
-        return res.send (`<script> alert("Invalid Credentials")
+    if (isdonor.length === 0) {
+        return res.send(`<script> alert("Invalid Credentials")
         window.location.href = "/delete";</script>
           `)
-    }else{
-        await donor.deleteOne({'contact': contact , 'password': password});
+    } else {
+        await donor.deleteOne({ 'contact': contact, 'password': password });
         res.send(`<script> alert("Your request has been deleted")
         
          window.location.href = "/finddonor"; </script>`)
     }
 });
 
-app.get('/register',function(req,res){
-    res.sendFile(path.join(__dirname ,'register.html'))
+app.get('/register', function (req, res) {
+    res.sendFile(path.join(__dirname, 'register.html'))
 })
 
-app.get('/registerdonor',async function(req,res){
+app.get('/registerdonor', async function (req, res) {
 
-    const {tehsil, village, password ,bloodgroupregister, name, contact, whatsappno } = req.query
-    const isdonor = await donor.find({'contact': contact})
+    const { tehsil, village, password, bloodgroupregister, name, contact, whatsappno } = req.query
+    const isdonor = await donor.find({ 'contact': contact })
 
-    if(isdonor.length > 0){
+    if (isdonor.length > 0) {
 
-     return res.send (`<script> alert("you are alrady register")
+        return res.send(`<script> alert("you are alrady register")
   window.location.href = "/register"; // Redirect back to form page
-        </script>`)    }
+        </script>`)
+    }
 
-   const newdonor = await donor({
-    "name":name,
-    "tehsil":tehsil,
-    bloodgroup:bloodgroupregister,
-    'contact':contact,
-    Whatsapp: whatsappno,
-    "village": village,
-    'password': password,
-   })
+    const newdonor = await donor({
+        "name": name,
+        "tehsil": tehsil,
+        bloodgroup: bloodgroupregister,
+        'contact': contact,
+        Whatsapp: whatsappno,
+        "village": village,
+        'password': password,
+    })
 
-   await newdonor.save()
+    await newdonor.save()
 
     res.send(`${header}
-     </a><script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     
 <div class="main-form flex justify-center">
-    <div class="min-w-[300px] mx-auto bg-white rounded-xl shadow-lg p-6 mt-5 mr-5 ml-5 mb-1
-5">
-    <div class="flex flex-col items-center space-y-4">
-        <!-- Profile Image -->
-        <img 
-            src="https://i.ibb.co/ZMpt5VC/download-1.jpg" 
-            alt="codeyogi"
-            class="w-24 h-24 border-2 border-green-500 rounded-full"
-        />
-        
-        <!-- Profile Title -->
-        <h2 class="text-2xl font-bold text-gray-800">DONOR PROFILE</h2>
-        
-        <!-- Profile Details -->
-        <div class="w-full space-y-3 text-gray-600">
-            <div class="flex justify-between border-b pb-2">
-                <span class="font-medium">Name:</span>
-                <span>${name}</span>
-            </div>
+    <div class="min-w-[300px] mx-auto bg-white rounded-xl shadow-lg p-6 mt-5 mr-5 ml-5 mb-15">
+        <div class="flex flex-col items-center space-y-4">
+            <!-- Profile Image -->
+            <img 
+                src="https://i.ibb.co/ZMpt5VC/download-1.jpg" 
+                alt="codeyogi"
+                class="w-24 h-24 border-2 border-green-500 rounded-full"
+            />
             
-            <div class="flex justify-between border-b pb-2">
-                <span class="font-medium">Tehsil:</span>
-                <span>${tehsil}</span>
-            </div>
+            <!-- Profile Title -->
+            <h2 class="text-2xl font-bold text-gray-800">DONOR PROFILE</h2>
             
-            <div class="flex justify-between border-b pb-2">
-                <span class="font-medium">Village:</span>
-                <span>${village}</span>
+            <!-- Profile Details -->
+            <div class="w-full space-y-3 text-gray-600">
+                <div class="flex justify-between border-b pb-2">
+                    <span class="font-medium">Name:</span>
+                    <span>${name}</span>
+                </div>
+                
+                <div class="flex justify-between border-b pb-2">
+                    <span class="font-medium">Tehsil:</span>
+                    <span>${tehsil}</span>
+                </div>
+                
+                <div class="flex justify-between border-b pb-2">
+                    <span class="font-medium">Village:</span>
+                    <span>${village}</span>
+                </div>
+                
+                <div class="flex justify-between border-b pb-2">
+                    <span class="font-medium">Blood Group:</span>
+                    <span class="text-red-600 font-semibold">${bloodgroupregister}</span>
+                </div>
+                
+                <div class="flex justify-between border-b pb-2">
+                    <span class="font-medium">Phone No:</span>
+                    <span class="text-blue-600">${contact}</span>
+                </div>
+                
+                <div class="flex justify-between border-b pb-2">
+                    <span class="font-medium">Whatsapp No:</span>
+                    <span class="text-green-600">${whatsappno}</span>
+                </div>
             </div>
-            
-            <div class="flex justify-between border-b pb-2">
-                <span class="font-medium">Blood Group:</span>
-                <span class="text-red-600 font-semibold">${bloodgroupregister}</span>
-            </div>
-            
-            <div class="flex justify-between border-b pb-2">
-                <span class="font-medium">Phone No:</span>
-                <span class="text-blue-600">${contact}</span>
-            </div>
-            
-            <div class="flex justify-between border-b pb-2">
-                <span class="font-medium">Whatsapp No:</span>
-                <span class="text-green-600">${whatsappno}</span>
-            </div>
-        </div>
 
-        <!-- Back Button -->
-        <a href="/" 
-           class="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white text-center rounded-lg transition-colors duration-200">
-            Back to Home
-      
+            <!-- Back Button -->
+            <a href="/" 
+               class="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white text-center rounded-lg transition-colors duration-200">
+                Back to Home
+            </a>
+        </div>
     </div>
-</div>
 </div>
             ${footer}`)
 })
 
-app.get('/profile', function(req,res){
+app.get('/profile', function (req, res) {
     res.sendFile(path.join(__dirname, 'profile.html'))
 })
 
-app.get('/login', async function(req,res){
-    const {contact, password} = req.query
+app.get('/login', async function (req, res) {
+    const { contact, password } = req.query
 
     console.log(contact, password)
 
-    const userAccount = await account.find({'contact': contact, 'password': password})
+    const userAccount = await account.find({ 'contact': contact, 'password': password })
     console.log(userAccount)
 
-    const allhistory = await history.find({'contact': contact, 'password': password})
+    const allhistory = await history.find({ 'contact': contact, 'password': password })
     console.log(allhistory)
 
-    if(userAccount.length === 0){
-        return res.send (`<script> alert("Invalid Credentials")
+    if (userAccount.length === 0) {
+        return res.send(`<script> alert("Invalid Credentials")
         window.location.href = "/profile";</script>`)
     } else {
         let card = ""
-        for(let x = 0; x < allhistory.length; x++){
-            const {name, village,tehsil, bloodgroup, contact, date}=allhistory[x]
+        for (let x = 0; x < allhistory.length; x++) {
+            const { name, village, tehsil, bloodgroup, contact, date } = allhistory[x]
             card += `<tr>
                 <td class="px-4 py-2">${name || 'N/A'}</td>
                 <td class="px-4 py-2">${village || 'N/A'}</td>
@@ -398,12 +398,12 @@ app.get('/login', async function(req,res){
     </script>
 
 </body>
-</html>` 
+</html>`
         res.send(html)
     }
 })
 
-app.get('/signup', async function(req, res) {
+app.get('/signup', async function (req, res) {
     const { contact, password } = req.query;
 
     // Check if user already exists (based only on contact)
@@ -430,11 +430,11 @@ app.get('/signup', async function(req, res) {
     }
 });
 
-app.get('/allfuture', function(req,res){
+app.get('/allfuture', function (req, res) {
     res.sendFile(path.join(__dirname, 'allfuture.html'))
 })
 
 // Start the server
-app.listen(5000, '0.0.0.0', function() {
+app.listen(5000, '0.0.0.0', function () {
     console.log('Server is running on port 5000');
 });
