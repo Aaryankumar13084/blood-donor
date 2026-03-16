@@ -438,7 +438,7 @@ app.get('/allfuture', function (req, res) {
 module.exports = app;
 
 // Start the server only if running locally
-if (process.env.NODE_ENV !== 'production') {
+if (!process.env.VERCEL) {
     app.listen(5000, '0.0.0.0', function () {
         console.log('Server is running on port 5000');
     });
