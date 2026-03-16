@@ -434,7 +434,12 @@ app.get('/allfuture', function (req, res) {
     res.sendFile(path.join(__dirname, 'allfuture.html'))
 })
 
-// Start the server
-app.listen(5000, '0.0.0.0', function () {
-    console.log('Server is running on port 5000');
-});
+// Export the Express API
+module.exports = app;
+
+// Start the server only if running locally
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(5000, '0.0.0.0', function () {
+        console.log('Server is running on port 5000');
+    });
+}
